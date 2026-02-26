@@ -1,27 +1,20 @@
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="app-container">
+    <header>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+      <router-link to="/bug">Bug</router-link>
+      <router-link to="/computer">Computer</router-link>
+      <router-link to="/diary">Diary</router-link>
+      <router-link to="/essays">Essays</router-link>
+      <router-link to="/learning">Learning</router-link>
+      <router-link to="/reading">Reading</router-link>
+    </header>
+    <main>
+      <router-view></router-view>
+    </main>
+    <footer> @2026 </footer>
   </div>
-  <router-view></router-view>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
