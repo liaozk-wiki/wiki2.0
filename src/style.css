@@ -66,6 +66,11 @@
   max-width: 720px;
 }
 
+/* 首页为全屏 Bing 背景，主内容不限制宽度 */
+.app-container.is-home > main > * {
+  max-width: none;
+}
+
 /* 页脚 */
 
 .app-container > footer {

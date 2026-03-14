@@ -1,7 +1,7 @@
 <script setup>
 import 'github-markdown-css/github-markdown-light.css' 
 import 'highlight.js/styles/github.css'
-import { ref, onMounted, watch, computed, nextTick } from 'vue'
+import { ref, onMounted, watch, computed, nextTick, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
@@ -9,6 +9,24 @@ import hljs from 'highlight.js'
 const route = useRoute()
 const content = ref('')
 const articleBodyRef = ref(null)
+const toc = ref([])
+const activeTocSlug = ref('')
+const expandedH1Slugs = ref(new Set())
+let observer = null
+
+/** 将扁平 toc 转为树形：一级下挂二级，一级默认展开，二级默认关闭 */
+const tocTree = computed(() => {
+  const list = toc.value
+  const tree = []
+  for (const item of list) {
+    if (item.level === 1) {
+      tree.push({ ...item, children: [] })
+    } else if (item.level === 2 && tree.length) {
+      tree[tree.length - 1].children.push(item)
+    }
+  }
+  return tree
+})
 
 const backPath = computed(() => {
   const { category } = route.params
@@ -27,6 +45,18 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
   token.attrSet('onerror', "this.onerror=null;this.style.display='none';")
   token.attrJoin('class', 'article-image')
   return self.renderToken(tokens, idx, options)
+}
+
+let currentToc = []
+let headingIndex = 0
+md.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
+  const token = tokens[idx]
+  const level = parseInt(token.tag.charAt(1), 10)
+  if ((level === 1 || level === 2) && currentToc[headingIndex]) {
+    token.attrSet('id', currentToc[headingIndex].slug)
+    headingIndex++
+  }
+  return self.renderToken(tokens, idx, options, env, self)
 }
 
 /** 将连续多个空行保留为多个换行（Markdown 默认会合并为一个段落间隔） */
@@ -49,14 +79,79 @@ function preserveMultipleNewlinesOutsideCodeBlocks(text) {
   return parts.join('')
 }
 
+/** 从 Markdown 原文提取 h1、h2 作为目录（忽略代码块内的 #），生成 slug 供锚点使用 */
+function extractToc(text) {
+  const list = []
+  const seen = new Map()
+  const lines = text.split('\n')
+  let inCodeBlock = false
+  for (const line of lines) {
+    if (/^```/.test(line)) {
+      inCodeBlock = !inCodeBlock
+      continue
+    }
+    if (inCodeBlock) continue
+    const m = line.match(/^(#{1,2})\s+(.+)$/)
+    if (!m) continue
+    const level = m[1].length
+    const raw = m[2].replace(/\*\*?|`|#/g, '').trim()
+    const slug =
+      raw
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\u4e00-\u9fff-]/g, '')
+        .toLowerCase() || 'h'
+    const count = seen.get(slug) || 0
+    seen.set(slug, count + 1)
+    list.push({
+      level,
+      text: raw,
+      slug: count > 0 ? `${slug}-${count}` : slug,
+    })
+  }
+  return list
+}
+
 async function loadArticle() {
   const { category, id } = route.params
   if (!category || !id) return
   const res = await fetch(`/content/${category}/${id}.md`)
   const text = await res.text()
+  const tocList = extractToc(text)
+  toc.value = tocList
+  currentToc = tocList
+  headingIndex = 0
   content.value = md.render(preserveMultipleNewlinesOutsideCodeBlocks(text))
   await nextTick()
   highlightCodeBlocks()
+  setupHeadingObserver()
+}
+
+/** 监听正文中 h1/h2 进入视口，高亮对应目录项 */
+function setupHeadingObserver() {
+  if (observer) observer.disconnect()
+  const container = articleBodyRef.value
+  if (!container || !toc.value.length) return
+  const headings = container.querySelectorAll('h1[id], h2[id]')
+  if (!headings.length) return
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue
+        const id = entry.target.id
+        if (id) activeTocSlug.value = id
+      }
+    },
+    { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+  )
+  headings.forEach((el) => observer.observe(el))
+  if (headings[0]) activeTocSlug.value = headings[0].id || ''
+}
+
+function toggleH1(slug) {
+  const next = new Set(expandedH1Slugs.value)
+  if (next.has(slug)) next.delete(slug)
+  else next.add(slug)
+  expandedH1Slugs.value = next
 }
 
 /** Markdown 渲染后对文章内所有 <pre><code> 做 highlight.js 高亮 */
@@ -70,9 +165,15 @@ function highlightCodeBlocks() {
 
 onMounted(loadArticle)
 
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
+
 watch(
   () => [route.params.category, route.params.id],
   () => {
+    expandedH1Slugs.value = new Set()
+    activeTocSlug.value = ''
     loadArticle()
   }
 )
@@ -81,14 +182,162 @@ watch(
 <template>
   <div class="article-page">
     <router-link :to="backPath" class="back-link">← 返回列表</router-link>
-    <div ref="articleBodyRef" class="article-body markdown-body" v-html="content"></div>
+    <div class="article-layout">
+      <div ref="articleBodyRef" class="article-body markdown-body" v-html="content"></div>
+      <aside v-if="tocTree.length" class="toc-sidebar">
+        <div class="toc-title">目录</div>
+        <nav class="toc-nav">
+          <div v-for="section in tocTree" :key="section.slug" class="toc-section">
+            <div class="toc-h1-row">
+              <a
+                :href="`#${section.slug}`"
+                :class="['toc-link', 'toc-link--h1', { 'toc-link--active': activeTocSlug === section.slug }]"
+              >
+                {{ section.text }}
+              </a>
+              <button
+                v-if="section.children.length"
+                type="button"
+                class="toc-h1-arrow"
+                :class="{ 'toc-h1-arrow--open': expandedH1Slugs.has(section.slug) }"
+                :aria-expanded="expandedH1Slugs.has(section.slug)"
+                @click.stop="toggleH1(section.slug)"
+              >
+                ▼
+              </button>
+            </div>
+            <div v-show="expandedH1Slugs.has(section.slug)" class="toc-children">
+              <a
+                v-for="child in section.children"
+                :key="child.slug"
+                :href="`#${child.slug}`"
+                :class="['toc-link', 'toc-link--h2', { 'toc-link--active': activeTocSlug === child.slug }]"
+              >
+                {{ child.text }}
+              </a>
+            </div>
+          </div>
+        </nav>
+      </aside>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .article-page {
-  max-width: 820px;
+  max-width: 1280px;
   margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.article-layout {
+  display: flex;
+  gap: 1.75rem;
+  align-items: flex-start;
+}
+
+.article-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.toc-sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 4rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.toc-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.toc-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.toc-h1-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.toc-h1-arrow {
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  font-size: 0.55rem;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.toc-h1-arrow:hover {
+  color: #6b7280;
+}
+
+.toc-h1-arrow--open {
+  transform: rotate(-180deg);
+}
+
+.toc-children {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-left: 0.75rem;
+}
+
+.toc-link {
+  display: inline;
+  font-size: 0.85rem;
+  color: #4b5563;
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.15s;
+}
+
+.toc-link:hover {
+  color: #111827;
+}
+
+.toc-link--h1 {
+  font-weight: 600;
+}
+
+.toc-link--h2 {
+  font-size: 0.8rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.toc-link--h2:hover {
+  color: #374151;
+}
+
+.toc-link--active {
+  color: #000;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .markdown-body {

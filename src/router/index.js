@@ -11,7 +11,7 @@ import ReadingListView from '../views/ReadingListView.vue'
 import DetailView from '../views/DetailView.vue'
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: HomeView },
   { path: '/about', component: AboutView },
   { path: '/bug', component: BugListView },
   { path: '/computer', component: ComputerListview },
