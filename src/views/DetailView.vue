@@ -8,6 +8,7 @@ import hljs from 'highlight.js'
 
 const route = useRoute()
 const content = ref('')
+const articleBodyRef = ref(null)
 
 const backPath = computed(() => {
   const { category } = route.params
@@ -55,6 +56,16 @@ async function loadArticle() {
   const text = await res.text()
   content.value = md.render(preserveMultipleNewlinesOutsideCodeBlocks(text))
   await nextTick()
+  highlightCodeBlocks()
+}
+
+/** Markdown 渲染后对文章内所有 <pre><code> 做 highlight.js 高亮 */
+function highlightCodeBlocks() {
+  const container = articleBodyRef.value
+  if (!container) return
+  container.querySelectorAll('pre code').forEach((el) => {
+    hljs.highlightElement(el)
+  })
 }
 
 onMounted(loadArticle)
@@ -70,7 +81,7 @@ watch(
 <template>
   <div class="article-page">
     <router-link :to="backPath" class="back-link">← 返回列表</router-link>
-    <div class="article-body markdown-body" v-html="content"></div>
+    <div ref="articleBodyRef" class="article-body markdown-body" v-html="content"></div>
   </div>
 </template>
 
