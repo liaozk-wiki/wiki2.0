@@ -150,33 +150,6 @@
   color: #24292e;
 }
 
-.article-body pre code .code-line {
-  display: block;
-  padding: 0 1rem 0 3rem;
-  position: relative;
-  line-height: 1;
-  min-height: 1em;
-}
-
-.article-body pre code .code-line::before {
-  counter-increment: line;
-  content: counter(line);
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2.5rem;
-  padding-right: 0.75rem;
-  color: #959da5;
-  text-align: right;
-  font-size: 0.75rem;
-  line-height: 1;
-  box-sizing: border-box;
-  background: #f0f0f0 !important;
-  border-right: 1px solid #e1e4e8;
-  font-variant-numeric: tabular-nums;
-  user-select: none;
-}
 
 /* Typora GitHub 浅色：代码块浅灰底，与正文区分 */
 .article-body pre,
@@ -184,6 +157,10 @@
 .article-body .hljs {
   background-color: #f6f8fa !important;
   color: #24292e !important;
+}
+
+.article-body pre code.hljs {
+  padding: 0 !important;
 }
 
 .article-body table {
