@@ -75,3 +75,116 @@
   color: #6b7280;
   text-align: center;
 }
+
+/* 文章正文（Markdown 渲染结果） */
+
+.article-body {
+  line-height: 1.7;
+}
+
+.article-body h1 {
+  font-size: 1.75rem;
+  margin: 1.5rem 0 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.article-body h2 {
+  font-size: 1.35rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.article-body h3 {
+  font-size: 1.15rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.article-body p {
+  margin: 0.75rem 0;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.article-body blockquote {
+  margin: 0.75rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-left: 4px solid #d1d5db;
+  color: #4b5563;
+}
+
+.article-body pre {
+  margin: 1rem 0;
+  padding: 0; /* 让内边距由 code 控制，方便行号布局 */
+  background: #f6f8fa;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+.article-body pre code {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: none;
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  counter-reset: line;
+}
+
+.article-body code {
+  padding: 0.2em 0.4em;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* 覆盖任何深色代码主题，统一为浅灰背景 */
+
+.article-body pre,
+.article-body pre code,
+.article-body .hljs {
+  background-color: #f6f8fa !important;
+  color: #24292e !important;
+}
+
+/* 行号样式：模仿 Typora GitHub 主题 */
+
+.article-body pre code .code-line {
+  display: block;
+  padding-left: 3rem;
+  position: relative;
+}
+
+.article-body pre code .code-line::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  color: #9ca3af;
+  text-align: right;
+  width: 2rem;
+  font-size: 0.75rem;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.article-body th,
+.article-body td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.article-body th {
+  background: #f9fafb;
+  font-weight: 500;
+}

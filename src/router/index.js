@@ -8,8 +8,7 @@ import EssaysListView from '../views/EssaysListView.vue'
 import HomeView from '../views/HomeView.vue'
 import LearningListView from '../views/LearningListView.vue'
 import ReadingListView from '../views/ReadingListView.vue'
-
-// 按需导入你的页面组件
+import DetailView from '../views/DetailView.vue'
 
 const routes = [
   { path: '/', component: Home },
@@ -21,6 +20,7 @@ const routes = [
   { path: '/home', component: HomeView },
   { path: '/learning', component: LearningListView },
   { path: '/reading', component: ReadingListView },
+  { path: '/:category/:id', component: DetailView },
 ]
 
 const base = '/'
