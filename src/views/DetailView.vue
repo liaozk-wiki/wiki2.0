@@ -1,5 +1,5 @@
 <script setup>
-import 'github-markdown-css/github-markdown.css'
+import 'github-markdown-css/github-markdown-light.css' 
 import 'highlight.js/styles/github.css'
 import { ref, onMounted, watch, computed, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
@@ -15,30 +15,10 @@ const backPath = computed(() => {
 })
 
 const md = new MarkdownIt({
-  html: false,
+  html: true,
   linkify: true,
   typographer: true,
   breaks: true,
-  highlight(code, lang) {
-    let result
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        result = hljs.highlight(code, { language: lang, ignoreIllegals: true })
-      } catch (e) {
-        // ignore and fall through
-      }
-    }
-    // 自动检测语言，保证总是有高亮
-    if (!result) {
-      result = hljs.highlightAuto(code)
-    }
-    // 按行包裹，配合 CSS 显示行号
-    const clean = result.value.replace(/\n$/, '')
-    const lines = clean.split('\n')
-    return lines
-      .map((line) => `<span class="code-line">${line || '&nbsp;'}</span>`)
-      .join('\n')
-  },
 })
 
 md.renderer.rules.image = (tokens, idx, options, env, self) => {
@@ -48,12 +28,17 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
   return self.renderToken(tokens, idx, options)
 }
 
+/** 将连续多个空行保留为多个换行（Markdown 默认会合并为一个段落间隔） */
+function preserveMultipleNewlines(text) {
+  return text.replace(/(\n\n)(\n+)/g, (_, pair, rest) => pair + '<br>\n'.repeat(rest.length))
+}
+
 async function loadArticle() {
   const { category, id } = route.params
   if (!category || !id) return
   const res = await fetch(`/content/${category}/${id}.md`)
   const text = await res.text()
-  content.value = md.render(text)
+  content.value = md.render(preserveMultipleNewlines(text))
   await nextTick()
 }
 
@@ -85,7 +70,7 @@ watch(
   padding: 2rem 2.25rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-  color: #24292e; /* GitHub 正文颜色 */
+  color: #24292e;
 }
 
 .markdown-body h1,

@@ -116,59 +116,74 @@
   color: #4b5563;
 }
 
+/* ===== 代码块：Typora GitHub 白主题 ===== */
+
 .article-body pre {
   margin: 1rem 0;
-  padding: 0; /* 让内边距由 code 控制，方便行号布局 */
-  background: #f6f8fa;
+  padding: 0;
+  background: #ffffff;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e1e4e8;
   overflow-x: auto;
 }
 
 .article-body pre code {
   display: block;
-  padding: 0.75rem 1rem;
+  padding: 0.35rem 0;
+  padding-left: 0;
   background: none;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  line-height: 1;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   counter-reset: line;
+  color: #24292e;
 }
 
-.article-body code {
+.article-body :not(pre) > code {
   padding: 0.2em 0.4em;
-  background: #f3f4f6;
+  background: #f6f8fa;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.85em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  color: #24292e;
 }
-
-/* 覆盖任何深色代码主题，统一为浅灰背景 */
-
-.article-body pre,
-.article-body pre code,
-.article-body .hljs {
-  background-color: #f6f8fa !important;
-  color: #24292e !important;
-}
-
-/* 行号样式：模仿 Typora GitHub 主题 */
 
 .article-body pre code .code-line {
   display: block;
-  padding-left: 3rem;
+  padding: 0 1rem 0 3rem;
   position: relative;
+  line-height: 1;
+  min-height: 1em;
 }
 
 .article-body pre code .code-line::before {
   counter-increment: line;
   content: counter(line);
   position: absolute;
-  left: 0.75rem;
+  left: 0;
   top: 0;
-  color: #9ca3af;
+  bottom: 0;
+  width: 2.5rem;
+  padding-right: 0.75rem;
+  color: #959da5;
   text-align: right;
-  width: 2rem;
   font-size: 0.75rem;
+  line-height: 1;
+  box-sizing: border-box;
+  background: #fafbfc !important;
+  border-right: 1px solid #e1e4e8;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+/* Typora GitHub 白主题：代码块与 hljs 白底 */
+.article-body pre,
+.article-body pre code,
+.article-body .hljs {
+  background-color: #ffffff !important;
+  color: #24292e !important;
 }
 
 .article-body table {
