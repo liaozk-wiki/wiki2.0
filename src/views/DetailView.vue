@@ -33,12 +33,27 @@ function preserveMultipleNewlines(text) {
   return text.replace(/(\n\n)(\n+)/g, (_, pair, rest) => pair + '<br>\n'.repeat(rest.length))
 }
 
+/** 仅对代码块之外的正文做多换行保留，代码块内部不替换 */
+function preserveMultipleNewlinesOutsideCodeBlocks(text) {
+  const codeBlockRe = /^```[\w]*\s*\n[\s\S]*?^```\s*\n?/gm
+  const parts = []
+  let lastEnd = 0
+  let match
+  while ((match = codeBlockRe.exec(text)) !== null) {
+    parts.push(preserveMultipleNewlines(text.slice(lastEnd, match.index)))
+    parts.push(match[0])
+    lastEnd = match.index + match[0].length
+  }
+  parts.push(preserveMultipleNewlines(text.slice(lastEnd)))
+  return parts.join('')
+}
+
 async function loadArticle() {
   const { category, id } = route.params
   if (!category || !id) return
   const res = await fetch(`/content/${category}/${id}.md`)
   const text = await res.text()
-  content.value = md.render(preserveMultipleNewlines(text))
+  content.value = md.render(preserveMultipleNewlinesOutsideCodeBlocks(text))
   await nextTick()
 }
 

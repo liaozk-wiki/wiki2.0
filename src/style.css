@@ -116,12 +116,12 @@
   color: #4b5563;
 }
 
-/* ===== 代码块：Typora GitHub 白主题 ===== */
+/* ===== 代码块：Typora GitHub 浅色主题 ===== */
 
 .article-body pre {
   margin: 1rem 0;
   padding: 0;
-  background: #ffffff;
+  background: #f6f8fa;
   border-radius: 6px;
   border: 1px solid #e1e4e8;
   overflow-x: auto;
@@ -172,17 +172,17 @@
   font-size: 0.75rem;
   line-height: 1;
   box-sizing: border-box;
-  background: #fafbfc !important;
+  background: #f0f0f0 !important;
   border-right: 1px solid #e1e4e8;
   font-variant-numeric: tabular-nums;
   user-select: none;
 }
 
-/* Typora GitHub 白主题：代码块与 hljs 白底 */
+/* Typora GitHub 浅色：代码块浅灰底，与正文区分 */
 .article-body pre,
 .article-body pre code,
 .article-body .hljs {
-  background-color: #ffffff !important;
+  background-color: #f6f8fa !important;
   color: #24292e !important;
 }
 
