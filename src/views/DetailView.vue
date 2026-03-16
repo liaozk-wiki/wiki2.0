@@ -250,6 +250,8 @@ watch(
   background: #f9fafb;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
+  max-height: calc(100vh - 5rem);
+  overflow: auto;
 }
 
 .toc-title {
