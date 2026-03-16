@@ -183,7 +183,6 @@ watch(
   <div class="article-page">
     <router-link :to="backPath" class="back-link">← 返回列表</router-link>
     <div class="article-layout">
-      <div ref="articleBodyRef" class="article-body markdown-body" v-html="content"></div>
       <aside v-if="tocTree.length" class="toc-sidebar">
         <div class="toc-title">目录</div>
         <nav class="toc-nav">
@@ -219,19 +218,22 @@ watch(
           </div>
         </nav>
       </aside>
+      <div ref="articleBodyRef" class="article-body markdown-body" v-html="content"></div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .article-page {
-  max-width: 1280px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  width: 100%;
+  max-width: none;
+  margin: 2rem 0;
+  padding: 0;
 }
 
 .article-layout {
   display: flex;
+  width: 100%;
   gap: 1.75rem;
   align-items: flex-start;
 }

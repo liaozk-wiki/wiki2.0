@@ -3,8 +3,8 @@ import Home from '../components/HelloWorld.vue'
 import AboutView from '../views/AboutView.vue'
 import BugListView from '../views/BugListView.vue'
 import ComputerListview from '../views/ComputerListview.vue'
-import DiaryListView from '../views/DiaryListView.vue'
-import EssaysListView from '../views/EssaysListView.vue'
+import LivingListView from '../views/LivingListView.vue'
+import WritingListView from '../views/WritingListView.vue'
 import HomeView from '../views/HomeView.vue'
 import LearningListView from '../views/LearningListView.vue'
 import ReadingListView from '../views/ReadingListView.vue'
@@ -15,8 +15,8 @@ const routes = [
   { path: '/about', component: AboutView },
   { path: '/bug', component: BugListView },
   { path: '/computer', component: ComputerListview },
-  { path: '/diary', component: DiaryListView },
-  { path: '/essays', component: EssaysListView },
+  { path: '/living', component: LivingListView },
+  { path: '/writing', component: WritingListView },
   { path: '/home', component: HomeView },
   { path: '/learning', component: LearningListView },
   { path: '/reading', component: ReadingListView },
