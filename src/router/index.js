@@ -18,8 +18,10 @@ const routes = [
   { path: '/living', component: LivingListView },
   { path: '/writing', component: WritingListView },
   { path: '/home', component: HomeView },
-  { path: '/learning', component: LearningListView },
   { path: '/reading', component: ReadingListView },
+  { path: '/learning/:topic/:articleId', name: 'LearningArticle', component: DetailView },
+  { path: '/learning/:topic', component: LearningListView },
+  { path: '/learning', component: LearningListView },
   { path: '/:category/:id', component: DetailView },
 ]
 

@@ -28,7 +28,13 @@ const tocTree = computed(() => {
   return tree
 })
 
+const isLearningArticle = computed(() => route.name === 'LearningArticle')
+
 const backPath = computed(() => {
+  if (isLearningArticle.value) {
+    const topic = route.params.topic
+    return topic ? `/learning/${topic}` : '/learning'
+  }
   const { category } = route.params
   return category ? `/${category}` : '/'
 })
@@ -112,6 +118,27 @@ function extractToc(text) {
 }
 
 async function loadArticle() {
+  if (isLearningArticle.value) {
+    const { topic, articleId } = route.params
+    if (!topic || !articleId) return
+    const res = await fetch(`/content/learning/${topic}/${articleId}.md`)
+    if (!res.ok) {
+      content.value = ''
+      toc.value = []
+      return
+    }
+    const text = await res.text()
+    const tocList = extractToc(text)
+    toc.value = tocList
+    currentToc = tocList
+    headingIndex = 0
+    content.value = md.render(preserveMultipleNewlinesOutsideCodeBlocks(text))
+    await nextTick()
+    highlightCodeBlocks()
+    setupHeadingObserver()
+    return
+  }
+
   const { category, id } = route.params
   if (!category || !id) return
   const res = await fetch(`/content/${category}/${id}.md`)
@@ -170,7 +197,13 @@ onUnmounted(() => {
 })
 
 watch(
-  () => [route.params.category, route.params.id],
+  () => [
+    route.name,
+    route.params.category,
+    route.params.id,
+    route.params.topic,
+    route.params.articleId,
+  ],
   () => {
     expandedH1Slugs.value = new Set()
     activeTocSlug.value = ''
