@@ -1,7 +1,3 @@
----
-layout: post
-title: 前言
----
 
 
 # 写在前面

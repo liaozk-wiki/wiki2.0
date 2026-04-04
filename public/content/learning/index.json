@@ -1,23 +1,128 @@
 [
   {
-    "slug": "csapp",
-    "title": "深入理解计算机系统（示例）",
+    "slug": "algorithms4th",
+    "title": "算法（第 4 版）",
     "articles": [
       {
-        "id": "2025-03-01-intro",
-        "title": "示例：二进制与数据表示",
-        "date": "2025-03-01"
+        "id": "a.前言",
+        "title": "前言",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "b.排序",
+        "title": "排序",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "c.查找",
+        "title": "查找",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "d.图",
+        "title": "图",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "e.字符串",
+        "title": "字符串",
+        "date": "2000-01-01"
+      }
+    ]
+  },
+  {
+    "slug": "computernet",
+    "title": "计算机网络",
+    "articles": [
+      {
+        "id": "computer_network",
+        "title": "computer network",
+        "date": "2000-01-01"
       }
     ]
   },
   {
     "slug": "cs61a",
-    "title": "CS61A（示例）",
+    "title": "CS61A",
     "articles": [
       {
-        "id": "2025-03-02-hof",
-        "title": "示例：高阶函数笔记",
-        "date": "2025-03-02"
+        "id": "cs61a",
+        "title": "cs61a",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "cs61a总结",
+        "title": "cs61a总结",
+        "date": "2000-01-01"
+      }
+    ]
+  },
+  {
+    "slug": "cs61b",
+    "title": "CS61B",
+    "articles": [
+      {
+        "id": "cs61b",
+        "title": "cs61b",
+        "date": "2000-01-01"
+      }
+    ]
+  },
+  {
+    "slug": "csapp",
+    "title": "CSAPP",
+    "articles": [
+      {
+        "id": "a.实验记录",
+        "title": "实验记录",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "b.程序结构和执行",
+        "title": "程序结构和执行",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "c.操作系统上的程序",
+        "title": "操作系统上的程序",
+        "date": "2000-01-01"
+      }
+    ]
+  },
+  {
+    "slug": "database",
+    "title": "数据库",
+    "articles": [
+      {
+        "id": "database",
+        "title": "数据库相关知识",
+        "date": "2000-01-01"
+      }
+    ]
+  },
+  {
+    "slug": "os",
+    "title": "操作系统",
+    "articles": [
+      {
+        "id": "操作系统_并发",
+        "title": "操作系统_并发",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "操作系统_持久化",
+        "title": "操作系统_持久化",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "操作系统_实验记录",
+        "title": "操作系统_实验记录",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "操作系统_虚拟化",
+        "title": "操作系统_虚拟化",
+        "date": "2000-01-01"
       }
     ]
   }

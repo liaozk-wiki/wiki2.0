@@ -1,7 +1,4 @@
----
-layout: post
-title: 程序结构和执行
----
+
 
 
 # Hello.c 的一生

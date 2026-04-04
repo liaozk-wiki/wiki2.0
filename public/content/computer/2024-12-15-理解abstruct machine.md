@@ -1,8 +1,4 @@
----
-layout: post
-title: 理解jyy-os课程的abstruct machine
-category: 计算机
----
+
 
 这个其实应该属于jyy-os课程的内容，不太方便将其归纳到os模块，故单独放置于此。
 理解abstruct machine：

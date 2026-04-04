@@ -1,8 +1,3 @@
----
-layout: post
-title: Kubernetes Overview
-category: 计算机
----
 
 20250729
 

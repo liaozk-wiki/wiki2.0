@@ -1,7 +1,3 @@
----
-layout: post
-title: cs61a总结
----
 
 ![Python](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/Python.jpg)
 

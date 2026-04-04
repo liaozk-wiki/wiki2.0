@@ -1,7 +1,4 @@
----
-layout: post
-title: 实验记录
----
+
 
 
 ## Project

@@ -1,7 +1,3 @@
----
-layout: post
-title: cs61b
----
 
 
 # CS61b
