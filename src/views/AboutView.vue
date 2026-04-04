@@ -1,3 +1,3 @@
 <template>
-    <h1>this is About</h1>
+    <h1>What kind of life do you want?</h1>
 </template>
