@@ -1,5 +1,5 @@
 
-![Python](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/Python.jpg)
+![Python](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/Python.jpg)
 
 
 

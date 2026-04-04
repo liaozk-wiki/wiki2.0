@@ -19,7 +19,7 @@
 
 ## 键索引计数法( counting sort )
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727160736518.png" alt="image-20250727160736518" style="zoom:25%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727160736518.png" alt="image-20250727160736518" style="zoom:25%;" />
 
 涉及 value 1,2,3,4； 我们需要按照 value 对key 进行排序
 

@@ -450,7 +450,7 @@ int r = ThreadLocalRandom.current() .nextInt(4, 77);
 
 [习题](https://docs.oracle.com/javase/tutorial/essential/concurrency/QandE/questions.html) 有点意思，只有happen-before可以提供保证
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/java%20concurrency.png" alt="java concurrency" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/java%20concurrency.png" alt="java concurrency" style="zoom:50%;" />
 
 
 
@@ -650,7 +650,7 @@ dequeue 需要condition notEmpty满足
 
 太...太..太.. 复杂了（来自图库的认证🤣）
 
-![image-20250724160807052](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250724160807052.png)
+![image-20250724160807052](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250724160807052.png)
 
 xchg实现原子交换
 
@@ -658,9 +658,9 @@ futex实现线程的挂起or唤醒
 
 然后才是AQS的抽象
 
-![image-20250724161023225](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250724161023225.png)
+![image-20250724161023225](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250724161023225.png)
 
-![image-20250724161140698](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250724161140698.png)
+![image-20250724161140698](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250724161140698.png)
 
 至此可以简单的理解为
 
@@ -698,11 +698,11 @@ copy on write
 
 ## synchronized 的优化
 
-![image-20250724164419763](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250724164419763.png)
+![image-20250724164419763](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250724164419763.png)
 
 stack的锁记录是 lock record
 
-![image-20250507174759491](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250507174759491.png)
+![image-20250507174759491](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250507174759491.png)
 
 
 

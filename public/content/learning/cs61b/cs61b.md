@@ -17,9 +17,9 @@ Complexity is anything related to the structure of a software system that makes 
 
 如何定义复杂性（Symptoms of Complexity）:
 
-![截屏2023-06-16 10.24.04](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-16%2010.24.04.png)
+![截屏2023-06-16 10.24.04](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-16%2010.24.04.png)
 
-![截屏2023-06-27 10.26.06](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-27%2010.26.06.png)
+![截屏2023-06-27 10.26.06](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-27%2010.26.06.png)
 
 软件很少被物理条件限制，几乎是一个纯粹的创造性活动，最大的限制是对我们所构建的东西的理解。
 
@@ -107,7 +107,7 @@ java没有函数类型，不允许存在指针指向函数
 
 传统方式：通过接口来实现
 
-![截屏2023-06-03 11.30.01](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-03%2011.30.01.png)
+![截屏2023-06-03 11.30.01](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-03%2011.30.01.png)
 
 q1：子类与父类有相同名称的变量？
 
@@ -168,11 +168,11 @@ Operation times --> cost model --> simplification-->order of growth
 
 Formalize:Big-Theta
 
-![截屏2023-06-09 13.29.28](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-09%2013.29.28.png)
+![截屏2023-06-09 13.29.28](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-09%2013.29.28.png)
 
 Big O: ... less than or equal O(?);
 
-![截屏2023-06-09 13.38.31](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-09%2013.38.31.png)
+![截屏2023-06-09 13.38.31](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-09%2013.38.31.png)
 
 Find strategies:
 
@@ -263,7 +263,7 @@ Operations:
 
 
 
-![截屏2023-06-10 12.17.19](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-10%2012.17.19.png)
+![截屏2023-06-10 12.17.19](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-10%2012.17.19.png)
 
 
 # 3.B-Tree
@@ -293,11 +293,11 @@ B-tree:avoiding imbalance;
 
 So Wired:
 
-![截屏2023-06-10 15.02.16](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-10%2015.02.16.png)
+![截屏2023-06-10 15.02.16](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-10%2015.02.16.png)
 
 3.when no-leaf become too full:
 
-![截屏2023-06-10 15.10.21](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-10%2015.10.21.png)
+![截屏2023-06-10 15.10.21](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-10%2015.10.21.png)
 
 B-tree also called 2-3-4 Tree/2-4 Tree:
 
@@ -328,24 +328,24 @@ Tree Rotation:
 
 Left-Leaning Red Black Binary Search Tree (LLRB):
 
-![截屏2023-06-10 17.36.29](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-10%2017.36.29.png)
+![截屏2023-06-10 17.36.29](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-10%2017.36.29.png)
 
 LLRB:Max Higeht: H+H+1
 
-![截屏2023-06-10 17.42.14](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-10%2017.42.14.png)
+![截屏2023-06-10 17.42.14](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-10%2017.42.14.png)
 
 LLRB与2-3Tree 之间存在一一对应;
 
 Red-Black Tree Insert:
 
-![截屏2023-06-11 10.34.19](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-11%2010.34.19.png)
+![截屏2023-06-11 10.34.19](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-11%2010.34.19.png)
 
 # 5.Hash:Data Index
 Using data as an index;
 
-![截屏2023-06-11 11.45.30](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-11%2011.45.30.png)
+![截屏2023-06-11 11.45.30](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-11%2011.45.30.png)
 
-![截屏2023-06-11 12.06.46](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-11%2012.06.46.png)
+![截屏2023-06-11 12.06.46](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-11%2012.06.46.png)
 
 core question is :compute & collision
 
@@ -363,7 +363,7 @@ Resize Cost: O(N);
 
 process negative:Math.floorMod(-1,4);because -1%4=-1 in java;
 
-![截屏2023-06-11 13.20.27](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-11%2013.20.27.png)
+![截屏2023-06-11 13.20.27](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-11%2013.20.27.png)
 
 Use a prime base:乘以一个基数（质数最好)以获取更好的随机性。
 
@@ -396,7 +396,7 @@ Search information form data;
 
 List,Map,Set,PQ,Disjoint Sets 
 
-![截屏2023-06-13 12.23.58](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-13%2012.23.58.png)
+![截屏2023-06-13 12.23.58](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-13%2012.23.58.png)
 
 
 # 8.Graph
@@ -426,7 +426,7 @@ Inorder:traverse left, visit ,traverse right
 
 ...
 
-![截屏2023-06-13 14.32.13](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-13%2014.32.13.png)
+![截屏2023-06-13 14.32.13](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-13%2014.32.13.png)
 
 打印目录：前序；统计大小：后序；
 
@@ -437,19 +437,19 @@ Tree with strict hierarchical: only one path between any two nodes;
 Graph with no hierarchical:one or more edges, each of which connects two nodes;
 
 Simple graph:
-![截屏2023-06-13 14.48.36](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-13%2014.48.36.png)
+![截屏2023-06-13 14.48.36](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-13%2014.48.36.png)
 
-![截屏2023-06-13 14.59.03](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-13%2014.59.03.png)
+![截屏2023-06-13 14.59.03](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-13%2014.59.03.png)
 
 Often solve problem about graph with traversal;
 
 s-t Connectivity:depth frist traversal;
 
-![截屏2023-06-13 16.15.34](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-13%2016.15.34.png)
+![截屏2023-06-13 16.15.34](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-13%2016.15.34.png)
 
 要实现广度优先/深度优先算法，需要构建图，图api的不同，决定了最终的具体不同实现。
 
-![截屏2023-06-13 16.30.40](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-13%2016.30.40.png)
+![截屏2023-06-13 16.30.40](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-13%2016.30.40.png)
 
 underling implement：
 
@@ -457,7 +457,7 @@ underling implement：
 
 adjacency list：
 
-![截屏2023-06-13 16.51.29](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-13%2016.51.29.png)
+![截屏2023-06-13 16.51.29](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-13%2016.51.29.png)
 
 DFS&BFS  exploring graph;
 
@@ -478,7 +478,7 @@ Djstra
 
 2.WeightedQuickUnionUF object
 
-![截屏2023-06-14 22.48.48](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-14%2022.48.48.png)
+![截屏2023-06-14 22.48.48](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-14%2022.48.48.png)
 
 Minimum spanning tree is spanning tree of minimum total weight
 
@@ -521,7 +521,7 @@ Kruskal`s Algorithm:
 
 每次添加非环的边，可以理解为两个割中取最短。
 
-![截屏2023-06-15 10.51.10](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-15%2010.51.10.png)
+![截屏2023-06-15 10.51.10](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-15%2010.51.10.png)
 
 
 # 10.Range Searching and Multi-Dimensional Data
@@ -610,7 +610,7 @@ if any subrortine for task Q can be used to solve P ,we say P reduces to Q;
 
 传递性：。。。
 
-![截屏2023-06-25 09.49.34](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-25%2009.49.34.png)
+![截屏2023-06-25 09.49.34](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-25%2009.49.34.png)
 
 选择最小排序  n平方--堆排序nlogn（放到堆里面再取出来）--in-plance heap sort
 
@@ -628,7 +628,7 @@ if any subrortine for task Q can be used to solve P ,we say P reduces to Q;
 
 终极王者：quick sort
 
-![截屏2023-06-26 13.04.37](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-26%2013.04.37.png)
+![截屏2023-06-26 13.04.37](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-26%2013.04.37.png)
 
 选一个标记，分区，然后再对分区进行分区。
 
@@ -638,35 +638,35 @@ n平方～nlongn。受到所选择元素（主元）的位置影响，随机试�
 
 很难理论上证明快速排序比归并排序快，但经验如此。
 
-![截屏2023-06-29 12.30.16](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-29%2012.30.16.png)
+![截屏2023-06-29 12.30.16](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-29%2012.30.16.png)
 
 avoid the worst case:
 
-![截屏2023-06-29 12.32.59](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-29%2012.32.59.png)
+![截屏2023-06-29 12.32.59](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-29%2012.32.59.png)
 
-![截屏2023-06-29 12.46.49](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-29%2012.46.49.png)
+![截屏2023-06-29 12.46.49](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-29%2012.46.49.png)
 
 Heap sort:很少被使用。
 
 one quick sort implement (random):
 
-![截屏2023-06-29 13.05.05](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-29%2013.05.05.png)
+![截屏2023-06-29 13.05.05](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-29%2013.05.05.png)
 
 Another implement (smart pivot):
 
-![截屏2023-06-29 14.29.39](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-29%2014.29.39.png)
+![截屏2023-06-29 14.29.39](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-29%2014.29.39.png)
 
 However  Quick Select : partition
 
-![截屏2023-06-29 14.36.48](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-29%2014.36.48.png)
+![截屏2023-06-29 14.36.48](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-29%2014.36.48.png)
 
 Arrays.sort
 
 TimSort
 
-![截屏2023-06-30 12.48.34](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-30%2012.48.34.png)
+![截屏2023-06-30 12.48.34](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-30%2012.48.34.png)
 
-![截屏2023-06-30 12.50.06](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-30%2012.50.06.png)
+![截屏2023-06-30 12.50.06](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-30%2012.50.06.png)
 
 more information of sort:
 
@@ -688,7 +688,7 @@ radix sort
 
 sleep sort -- genre counting sort(alphabet keys only) -- radix sort
 
-![截屏2023-07-05 14.45.49](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-07-05%2014.45.49.png)
+![截屏2023-07-05 14.45.49](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-07-05%2014.45.49.png)
 
  对 counting sort 的扩展 推广到非alphabet范围：radix sort
 
@@ -712,5 +712,5 @@ cost model not well ， just-in-time complier （slid&lecture demo）
 
 compare integer in radix sort，注意进制
 
-![截屏2023-07-09 14.43.31](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-07-09%2014.43.31.png)
+![截屏2023-07-09 14.43.31](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-07-09%2014.43.31.png)
 

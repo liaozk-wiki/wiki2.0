@@ -1,7 +1,7 @@
 
 
 # 数据库的整体概览
-![存储-数据库](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E5%AD%98%E5%82%A8-%E6%95%B0%E6%8D%AE%E5%BA%93.jpg)
+![存储-数据库](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E5%AD%98%E5%82%A8-%E6%95%B0%E6%8D%AE%E5%BA%93.jpg)
 
 
 
@@ -53,13 +53,13 @@
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%88%AC%E7%BB%93%E6%9E%84.jpg" alt="数据库一般结构" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%88%AC%E7%BB%93%E6%9E%84.jpg" alt="数据库一般结构" style="zoom:50%;" />
 
 
 
 
 
-![image-20230331234602168](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%841.png)
+![image-20230331234602168](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%841.png)
 
 
 
@@ -89,7 +89,7 @@ DBMS工作者
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E7%BC%93%E5%86%B2%E5%8C%BA.jpg" alt="缓冲区" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E7%BC%93%E5%86%B2%E5%8C%BA.jpg" alt="缓冲区" style="zoom:50%;" />
 
 
 
@@ -100,7 +100,7 @@ DBMS工作者
 ## 并行架构
 1.共享内存：当前每一台电脑都算是
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E6%9E%B6%E6%9E%84.jpg" alt="共享内存架构" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E6%9E%B6%E6%9E%84.jpg" alt="共享内存架构" style="zoom:50%;" />
 
 
 
@@ -112,13 +112,13 @@ DBMS工作者
 
 故障：1个节点故障，全体停机；数据跳跃；冗余（链式分簇，全数据冗余）
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%97%A0%E5%85%B1%E4%BA%AB%E6%9E%B6%E6%9E%84.jpg" alt="无共享架构" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%97%A0%E5%85%B1%E4%BA%AB%E6%9E%B6%E6%9E%84.jpg" alt="无共享架构" style="zoom:50%;" />
 
 
 
 3.共享磁盘：挂了一个，不影响使用
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E5%85%B1%E4%BA%AB%E7%A3%81%E7%9B%98%E6%9E%B6%E6%9E%84.jpg" alt="共享磁盘架构" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E5%85%B1%E4%BA%AB%E7%A3%81%E7%9B%98%E6%9E%B6%E6%9E%84.jpg" alt="共享磁盘架构" style="zoom:50%;" />
 
 
 
@@ -277,7 +277,7 @@ aries协议：略
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6.jpg" alt="并发控制" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6.jpg" alt="并发控制" style="zoom:50%;" />
 
 
 
@@ -288,7 +288,7 @@ aries协议：略
 
 # 关系型数据库-Mysql
 
-![geektimemysql](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/geektimemysql.png)
+![geektimemysql](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/geektimemysql.png)
 
 
 
@@ -327,7 +327,7 @@ aries协议：略
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.jpg" alt="查询语句执行过程" style="zoom: 33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.jpg" alt="查询语句执行过程" style="zoom: 33%;" />
 
 1. 一般是系统通过连接池与mysql建立连接（连接管理），这里会读取权限。
 2. mysql内部也会通过连接池分配一个线程（工作者）处理次连接（线程管理）
@@ -344,7 +344,7 @@ net buffer 大小由net_buffer_length 定义，同时因为是边读边发，所
 
 ## 一条更新语句的流程
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.jpg" alt="更新语句执行过程" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B.jpg" alt="更新语句执行过程" style="zoom:33%;" />
 
 两阶段提交:
 
@@ -618,7 +618,7 @@ C上无索引：
 
 
 Mysql的行级别锁：
-![image-20250810165039895](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250810165039895.png)
+![image-20250810165039895](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250810165039895.png)
 
 
 

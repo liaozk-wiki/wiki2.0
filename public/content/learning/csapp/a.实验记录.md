@@ -67,7 +67,7 @@ rsync ali:/learn/csapp/3asm/bomb/bomb.s ~/devMself/csapp/run/3asm/porject/bomb/
 
 3.然后关键点便是这个，我就卡在了第5&6 个参数，及下面这个映射😖
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240620205007177.png" alt="image-20240620205007177" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240620205007177.png" alt="image-20240620205007177" style="zoom:33%;" />
 
 4.剩下的再去看phase2 就很简单了。
 
@@ -116,7 +116,7 @@ https://csapp.cs.cmu.edu/3e/labs.html 下载selfstudy-handout
 
 下载文件的目录：
 
-![image-20240723220726296](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240723220726296.png)
+![image-20240723220726296](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240723220726296.png)
 
 archlab.pdf：实验手册writeup
 
@@ -143,7 +143,7 @@ tar xvf sim.tar
 
 make clean;make
 
-![image-20240723223004256](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240723223004256.png)
+![image-20240723223004256](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240723223004256.png)
 
 想起了readme：unix need 安装：sudo apt-get tcl tcl-dev tk tk-dev
 
@@ -182,7 +182,7 @@ yum install flex-devel
 
 终于make 成功了!!!!
 
-![image-20240724222217112](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240724222217112.png)
+![image-20240724222217112](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240724222217112.png)
 
 越发觉得，学习，了解书中的内容，可能任务量的50%都没完成。不说课后习题，单这实验所耗费的时间绝对与看一个章节的内容不相上下，甚至更多！今天周三了，终于make完环境，明天可以正式开始了...
 
@@ -210,23 +210,23 @@ yum install flex-devel
 
 ```./yas sum.ys```编译一堆的错：
 
-![image-20240728134053371](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240728134053371.png)
+![image-20240728134053371](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240728134053371.png)
 
 因为示例链表.align4 & long  故代码中都改成l，mrmovq 变成mrmovl；
 
 然后最坑的便是寄存器不能随便使用，开始loop中我使用r9d来保存立即数4，一直提示无效，改成eax就编译通过
 
-![image-20240728143439702](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240728143439702.png)
+![image-20240728143439702](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240728143439702.png)
 
 编译完后，输出了文件:sum.yo;```./yis sum.yo```  it seems right:0xcba
 
-![image-20240728144200368](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240728144200368.png)
+![image-20240728144200368](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240728144200368.png)
 
 2.rsum_list
 
 将sum.ys 复制为rsum.ys；这次得参考x86的汇编来改写了，有了前面的6个馒头，第七个就比较简单了，semms right。
 
-![image-20240728152622506](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240728152622506.png)
+![image-20240728152622506](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240728152622506.png)
 
 3.copy.ys
 
@@ -234,13 +234,13 @@ yum install flex-devel
 
 key point：
 
-![image-20240728172102360](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240728172102360.png)
+![image-20240728172102360](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240728172102360.png)
 
 Ia32，并没有寄存器r8到r15，so，we need transfer param by stack！p164，3.7章！
 
 将寄存器修改为：%ebx & %ebp （注意pop & push）（未经验证）
 
-![image-20240728175728026](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240728175728026.png)
+![image-20240728175728026](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240728175728026.png)
 
 万万没想到，现在已经是17点58了，所有人描述为简单的partA，花了6个多小时，白天over了。也是打铁不趁热的结果。
 
@@ -373,7 +373,7 @@ Count 出错了:next 里面应该是jle 之前是 jne（上面代码已改正）
 
 next：进行基准测试
 
-![image-20240730145204589](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240730145204589.png)
+![image-20240730145204589](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240730145204589.png)
 
 10.75， 0分😭
 
@@ -418,7 +418,7 @@ gcc -Og -std=c99 -o prog csim-t.c cachelab.c
 ./prog -s 11 -E 22 -b 33 -t traces/yi.trace 
 ```
 
-![image-20240731160446942](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240731160446942.png)
+![image-20240731160446942](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240731160446942.png)
 
 配置vscode：
 
@@ -688,9 +688,9 @@ int main(int argc, char* argv[])
 
 没搞明白，为何单个文件本地测试正确，服务器运行测试程序就错误？
 
-![image-20240804153227229](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240804153227229.png)
+![image-20240804153227229](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240804153227229.png)
 
-![image-20240804153309130](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240804153309130.png)
+![image-20240804153309130](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240804153309130.png)
 
 what‘s  wrong?
 
@@ -822,7 +822,7 @@ void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 
 简单的4*4:miss = 1891
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240806112641951.png" alt="image-20240806112641951" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240806112641951.png" alt="image-20240806112641951" style="zoom:33%;" />
 
 
 在整个4x4的循环当中，其实a每次读入进来的4行8列可以有效被利用，a0～3的前4列对应b0～3的前4列，a0～3的后四列对应b4～7的前4列。即我们浪费了b中每次读进来4行的后4列。如何有效利用呢？
@@ -833,7 +833,7 @@ void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 
 2.要利用b0～3的后4列，需要a4～7替换a0～3
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240806121242449.png" alt="image-20240806121242449" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240806121242449.png" alt="image-20240806121242449" style="zoom:33%;" />
 
 一种可行的方式，也即上面链接里的答案，细节是否一致未深究。
 
@@ -1076,7 +1076,7 @@ WAIT
 
 查看对比：
 
-![image-20240904214600444](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240904214600444.png)
+![image-20240904214600444](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240904214600444.png)
 
 没懂，eof时正确的终止？close & wait 也不是tsh的内部命令。应该是只是简单的测试。
 
@@ -1101,7 +1101,7 @@ WAIT
 
 对比：
 
-![image-20240904215244421](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240904215244421.png)
+![image-20240904215244421](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240904215244421.png)
 
 差异：
 
@@ -1128,7 +1128,7 @@ quit
 
 对比：
 
-![image-20240905153830916](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240905153830916.png)
+![image-20240905153830916](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240905153830916.png)
 
 tsh已经正确的离开了，但没有实现 /bin/echo tsh> quit 该命令。
 
@@ -1151,7 +1151,7 @@ tsh已经正确的离开了，但没有实现 /bin/echo tsh> quit 该命令。
 
 这里不介绍内容了，后台跑程序，直接拿3的版本运行对比差异：
 
-![image-20240905174557299](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240905174557299.png)
+![image-20240905174557299](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240905174557299.png)
 
 我们可以看到差异体现在执行后的输出字符串上，依次应该是 jobid，pid，执行命令行。
 
@@ -1276,7 +1276,7 @@ Point2:根据writeup，对于前台程序，建议统一由信号处理程序去
 
 差异对比：
 
-![image-20240906142515744](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240906142515744.png)
+![image-20240906142515744](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240906142515744.png)
 
 目的：实现jobs命令
 
@@ -1287,7 +1287,7 @@ Point2:根据writeup，对于前台程序，建议统一由信号处理程序去
 
 对比：
 
-![image-20240906152729179](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240906152729179.png)
+![image-20240906152729179](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240906152729179.png)
 
 目的：前台程序响应SIGINT信号
 
@@ -1302,7 +1302,7 @@ Point2:根据writeup，对于前台程序，建议统一由信号处理程序去
 
 对比差异：
 
-![image-20240907131626127](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240907131626127.png)
+![image-20240907131626127](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240907131626127.png)
 
 目的：前台程序响应SIGTSTP信号
 
@@ -1343,7 +1343,7 @@ void sigtstp_handler(int sig)
 
 此时再看trace08的对比：
 
-![image-20240907154932409](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240907154932409.png)
+![image-20240907154932409](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240907154932409.png)
 
 分析：
 
@@ -1374,7 +1374,7 @@ void sigchld_handler(int sig)
 
 对比差异
 
-![image-20240908101948745](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240908101948745.png)
+![image-20240908101948745](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240908101948745.png)
 
 目的：实现bg命令。
 
@@ -1431,7 +1431,7 @@ calm, wrong!!!
 
 完全没有任何思路。
 
-![image-20240908144251670](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240908144251670.png)
+![image-20240908144251670](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240908144251670.png)
 
 查看mystop.c源码，可以得知，其运行后，
 
@@ -1565,7 +1565,7 @@ Reading tracefile: short1-bal.rep
 
 result：
 
-![image-20240917173048436](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20240917173048436.png)
+![image-20240917173048436](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20240917173048436.png)
 
 额 ， re_malloc 错误...
 

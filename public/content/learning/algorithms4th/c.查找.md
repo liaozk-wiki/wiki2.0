@@ -1491,7 +1491,7 @@ keys的实现 skip。
 
 前面我们学习的二叉搜索树，现在开始进阶2-3树&红黑树，在介绍之前，可以先看一下cs61b中的关于b树（做人要有b树🤣）的介绍，核心：树的高度不变&允许叶子结点存多个值&限制叶子结点能保存的个数。
 
-![截屏2023-06-10 15.02.16](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/%E6%88%AA%E5%B1%8F2023-06-10%2015.02.16.png)
+![截屏2023-06-10 15.02.16](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/%E6%88%AA%E5%B1%8F2023-06-10%2015.02.16.png)
 
 
 
@@ -1869,33 +1869,33 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 1.向只有一个3结点的树插入新的键
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727114918084.png" alt="image-20250727114918084" style="zoom: 33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727114918084.png" alt="image-20250727114918084" style="zoom: 33%;" />
 
 
 
 2.向父=2结点的3结点插入
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727115029848.png" alt="image-20250727115029848" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727115029848.png" alt="image-20250727115029848" style="zoom:33%;" />
 
 3.向父=3结点的3结点插入新的键
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727115157438.png" alt="image-20250727115157438" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727115157438.png" alt="image-20250727115157438" style="zoom:33%;" />
 
 4.分解根结点
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727115405101.png" alt="image-20250727115405101" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727115405101.png" alt="image-20250727115405101" style="zoom:33%;" />
 
 
 
 2-3树4结点分解为2-3树的六种情况：
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727120245921.png" alt="image-20250727120245921" style="zoom: 50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727120245921.png" alt="image-20250727120245921" style="zoom: 50%;" />
 
 
 
 2-3树的构造示例：
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727120651922.png" alt="image-20250727120651922" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727120651922.png" alt="image-20250727120651922" style="zoom:33%;" />
 
 ## 红黑树实现2-3树
 
@@ -1905,23 +1905,23 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 黑链接：普通的2-3树链接。
 
-![image-20250727122622113](https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727122622113.png)
+![image-20250727122622113](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727122622113.png)
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727122716013.png" alt="image-20250727122716013" style="zoom:50%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727122716013.png" alt="image-20250727122716013" style="zoom:50%;" />
 
 
 
 ## 左旋
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727123416324.png" alt="image-20250727123416324" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727123416324.png" alt="image-20250727123416324" style="zoom:33%;" />
 
 ## 右旋
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727123444697.png" alt="image-20250727123444697" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727123444697.png" alt="image-20250727123444697" style="zoom:33%;" />
 
 作为左倾红黑树，其特点就是：
 
@@ -1937,13 +1937,13 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 1.向单个2结点拆入新键
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727124547470.png" alt="image-20250727124547470" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727124547470.png" alt="image-20250727124547470" style="zoom:33%;" />
 
 
 
 2.向树的底部2结点插入新键（总是红链接父结点）
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727124855412.png" alt="image-20250727124855412" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727124855412.png" alt="image-20250727124855412" style="zoom:33%;" />
 
 
 
@@ -1962,7 +1962,7 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 3.3新键小于原树的2个键（将最上层红链接右旋就变成3.1了）
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727125916008.png" alt="image-20250727125916008" style="zoom: 33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727125916008.png" alt="image-20250727125916008" style="zoom: 33%;" />
 
 
 
@@ -1984,7 +1984,7 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 红链接在树中的向上传递：
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727131120478.png" alt="image-20250727131120478" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727131120478.png" alt="image-20250727131120478" style="zoom:33%;" />
 
 
 
@@ -1992,7 +1992,7 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 红黑树的插入示例：
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727131246214.png" alt="image-20250727131246214" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727131246214.png" alt="image-20250727131246214" style="zoom:33%;" />
 
 
 
@@ -2008,7 +2008,7 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 2.向上的时候将所有的4结点配平（虽然2-3-4树允许4结点，但红黑树不允许一个root两个红链接，需要参照23树对配平）
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727150546100.png" alt="image-20250727150546100" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727150546100.png" alt="image-20250727150546100" style="zoom:33%;" />
 
 
 
@@ -2018,7 +2018,7 @@ public class RedBlackTree<Key extends Comparable<Key>,Value> implements SimpleOr
 
 最终将问题转化为在父结点不是2结点的子树中删除最小键。
 
-<img src="https://cdn.jsdelivr.net/gh/liaozk-wiki/md_img/md/image-20250727150821486.png" alt="image-20250727150821486" style="zoom:33%;" />
+<img src="https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/image-20250727150821486.png" alt="image-20250727150821486" style="zoom:33%;" />
 
 
 
