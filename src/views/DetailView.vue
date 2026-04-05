@@ -3,6 +3,7 @@ import 'github-markdown-css/github-markdown-light.css'
 import 'highlight.js/styles/github.css'
 import { ref, onMounted, watch, computed, nextTick, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { withPublicBase } from '../utils/withPublicBase'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 
@@ -121,7 +122,9 @@ async function loadArticle() {
   if (isLearningArticle.value) {
     const { topic, articleId } = route.params
     if (!topic || !articleId) return
-    const res = await fetch(`/content/learning/${topic}/${articleId}.md`)
+    const res = await fetch(
+      withPublicBase(`/content/learning/${topic}/${articleId}.md`)
+    )
     if (!res.ok) {
       content.value = ''
       toc.value = []
@@ -141,7 +144,7 @@ async function loadArticle() {
 
   const { category, id } = route.params
   if (!category || !id) return
-  const res = await fetch(`/content/${category}/${id}.md`)
+  const res = await fetch(withPublicBase(`/content/${category}/${id}.md`))
   const text = await res.text()
   const tocList = extractToc(text)
   toc.value = tocList

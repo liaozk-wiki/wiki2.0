@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { withPublicBase } from './utils/withPublicBase'
 
 const route = useRoute()
 const isHome = computed(() => route.path === '/' || route.path === '')
@@ -50,8 +51,10 @@ onUnmounted(() => {
   window.removeEventListener('scroll', onWindowScroll)
 })
 
-// 首页背景：使用 public/bgimg 下的静态图（部署到 GitHub Pages 也可用）
-const staticBgUrl = '/bgimg/9B95F230-D7F7-446E-ACB2-82B8D347A5FA_1_105_c.jpeg'
+// 首页背景：public/bgimg；项目站需带 Vite base
+const staticBgUrl = withPublicBase(
+  '/bgimg/9B95F230-D7F7-446E-ACB2-82B8D347A5FA_1_105_c.jpeg'
+)
 </script>
 
 <template>

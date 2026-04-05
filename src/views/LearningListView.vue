@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { withPublicBase } from '../utils/withPublicBase'
 
 const route = useRoute()
 const router = useRouter()
@@ -20,13 +21,13 @@ const articles = computed(() => currentTopic.value?.articles ?? [])
 async function loadIndex() {
   loadError.value = ''
   try {
-    const res = await fetch('/content/learning/index.json')
+    const res = await fetch(withPublicBase('/content/learning/index.json'))
     if (!res.ok) throw new Error(String(res.status))
     const data = await res.json()
     topics.value = Array.isArray(data) ? data : []
   } catch {
     topics.value = []
-    loadError.value = '无法加载学习目录，请检查 /content/learning/index.json'
+    loadError.value = '无法加载学习目录（请确认已部署 public/content/learning/index.json）'
   }
 }
 

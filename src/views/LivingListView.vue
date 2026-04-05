@@ -1,11 +1,12 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { withPublicBase } from '../utils/withPublicBase'
 
 const list = ref([])
 
 onMounted(
     async () => {
-        const res = await fetch('/content/living/index.json')
+        const res = await fetch(withPublicBase('/content/living/index.json'))
         list.value = await res.json()
     }
 )

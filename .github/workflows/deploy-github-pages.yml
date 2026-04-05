@@ -26,9 +26,14 @@ jobs:
           node-version: '24'
           cache: npm
 
-      # 用户站点（仓库名 = owner.github.io）→ base 为 /；否则为项目站点 /仓库名/
+      # 默认：用户站 /；项目站 /仓库名/。若绑定自定义域名且站点在域名根，可在仓库 Settings → Variables 设 VITE_BASE=/
       - name: Set VITE_BASE for GitHub Pages
         run: |
+          if [ -n "${{ vars.VITE_BASE }}" ]; then
+            echo "VITE_BASE from repository variable"
+            echo "VITE_BASE=${{ vars.VITE_BASE }}" >> "$GITHUB_ENV"
+            exit 0
+          fi
           OWNER="${{ github.repository_owner }}"
           REPO="${{ github.event.repository.name }}"
           if [ "$REPO" = "${OWNER}.github.io" ]; then
