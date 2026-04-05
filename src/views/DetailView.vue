@@ -214,122 +214,178 @@ watch(
 
 <template>
   <div class="article-page">
-    <router-link :to="backPath" class="back-link">← 返回列表</router-link>
-    <div class="article-layout">
-      <aside v-if="tocTree.length" class="toc-sidebar">
-        <div class="toc-title">目录</div>
-        <nav class="toc-nav">
-          <div v-for="section in tocTree" :key="section.slug" class="toc-section">
-            <div class="toc-h1-row">
-              <a
-                :href="`#${section.slug}`"
-                :class="['toc-link', 'toc-link--h1', { 'toc-link--active': activeTocSlug === section.slug }]"
-              >
-                {{ section.text }}
-              </a>
-              <button
-                v-if="section.children.length"
-                type="button"
-                class="toc-h1-arrow"
-                :class="{ 'toc-h1-arrow--open': expandedH1Slugs.has(section.slug) }"
-                :aria-expanded="expandedH1Slugs.has(section.slug)"
-                @click.stop="toggleH1(section.slug)"
-              >
-                ▼
-              </button>
+    <div
+      class="article-layout"
+      :class="{ 'article-layout--with-toc': tocTree.length > 0 }"
+    >
+      <div v-if="tocTree.length" class="toc-column">
+        <router-link :to="backPath" class="back-link">← 返回列表</router-link>
+        <aside class="toc-sidebar">
+          <div class="toc-title">目录</div>
+          <nav class="toc-nav">
+            <div v-for="section in tocTree" :key="section.slug" class="toc-section">
+              <div class="toc-h1-row">
+                <a
+                  :href="`#${section.slug}`"
+                  :class="['toc-link', 'toc-link--h1', { 'toc-link--active': activeTocSlug === section.slug }]"
+                >
+                  {{ section.text }}
+                </a>
+                <button
+                  v-if="section.children.length"
+                  type="button"
+                  class="toc-h1-arrow"
+                  :class="{ 'toc-h1-arrow--open': expandedH1Slugs.has(section.slug) }"
+                  :aria-expanded="expandedH1Slugs.has(section.slug)"
+                  @click.stop="toggleH1(section.slug)"
+                >
+                  ▼
+                </button>
+              </div>
+              <div v-show="expandedH1Slugs.has(section.slug)" class="toc-children">
+                <a
+                  v-for="child in section.children"
+                  :key="child.slug"
+                  :href="`#${child.slug}`"
+                  :class="['toc-link', 'toc-link--h2', { 'toc-link--active': activeTocSlug === child.slug }]"
+                >
+                  {{ child.text }}
+                </a>
+              </div>
             </div>
-            <div v-show="expandedH1Slugs.has(section.slug)" class="toc-children">
-              <a
-                v-for="child in section.children"
-                :key="child.slug"
-                :href="`#${child.slug}`"
-                :class="['toc-link', 'toc-link--h2', { 'toc-link--active': activeTocSlug === child.slug }]"
-              >
-                {{ child.text }}
-              </a>
-            </div>
-          </div>
-        </nav>
-      </aside>
-      <div ref="articleBodyRef" class="article-body markdown-body" v-html="content"></div>
+          </nav>
+        </aside>
+      </div>
+      <div class="article-column">
+        <router-link v-if="!tocTree.length" :to="backPath" class="back-link back-link--solo">
+          ← 返回列表
+        </router-link>
+        <div
+          ref="articleBodyRef"
+          class="article-body markdown-body zhihu-article"
+          v-html="content"
+        ></div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .article-page {
+  /* 知乎 PC 正文列宽约 690px；TOC 单独定宽，与正文列宽解耦 */
+  --zhihu-content-width: 690px;
+  --zhihu-toc-width: 216px;
+  --zhihu-layout-gap: 28px;
+  /* 有 TOC 时左移半格 (目录宽+间距)/2，使正文列几何中心落在容器水平中心 */
+  --article-center-shift: calc(
+    -0.5 * (var(--zhihu-toc-width) + var(--zhihu-layout-gap))
+  );
   width: 100%;
   max-width: none;
-  margin: 2rem 0;
+  margin: 1.5rem 0 2rem;
   padding: 0;
 }
 
 .article-layout {
   display: flex;
-  width: 100%;
-  gap: 1.75rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
   align-items: flex-start;
+  width: 100%;
+  gap: var(--zhihu-layout-gap);
+}
+
+.article-layout--with-toc {
+  transform: translateX(var(--article-center-shift));
+}
+
+/* 正文列：固定目标宽度 690px，窄屏随容器收缩，有无 TOC 一致 */
+.article-column {
+  width: min(var(--zhihu-content-width), 100%);
+  flex: 0 0 min(var(--zhihu-content-width), 100%);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .article-body {
-  flex: 1;
+  width: 100%;
   min-width: 0;
 }
 
-.toc-sidebar {
-  width: 180px;
-  flex-shrink: 0;
+.toc-column {
+  width: var(--zhihu-toc-width);
+  flex: 0 0 var(--zhihu-toc-width);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
   position: sticky;
-  top: 4rem;
-  padding: 1rem;
-  background: #f9fafb;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  max-height: calc(100vh - 5rem);
+  top: calc(50px + 12px);
+  align-self: flex-start;
+  max-height: calc(100vh - 64px);
+}
+
+.toc-sidebar {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  background: #fafafa;
+  border-radius: 6px;
+  border: 1px solid #ebebeb;
   overflow: auto;
 }
 
 .toc-title {
-  font-size: 0.8rem;
+  font-size: 13px;
   font-weight: 600;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
+  color: #8590a6;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .toc-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 6px;
 }
 
 .toc-section {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 4px;
 }
 
 .toc-h1-row {
   display: flex;
-  align-items: center;
-  gap: 0.25rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.toc-h1-row .toc-link--h1 {
+  flex: 1;
+  min-width: 0;
 }
 
 .toc-h1-arrow {
   flex-shrink: 0;
-  padding: 0;
+  padding: 2px;
   margin: 0;
   border: none;
   background: none;
-  font-size: 0.55rem;
-  color: #9ca3af;
+  font-size: 10px;
+  color: #8590a6;
   cursor: pointer;
   transition: transform 0.2s;
 }
 
 .toc-h1-arrow:hover {
-  color: #6b7280;
+  color: #646464;
 }
 
 .toc-h1-arrow--open {
@@ -339,71 +395,213 @@ watch(
 .toc-children {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  padding-left: 0.75rem;
+  gap: 4px;
+  padding: 2px 0 4px 10px;
+  margin-left: 2px;
+  border-left: 1px solid #f0f0f0;
 }
 
 .toc-link {
-  display: inline;
-  font-size: 0.85rem;
-  color: #4b5563;
+  display: block;
+  font-size: 13px;
+  color: #646464;
   text-decoration: none;
-  line-height: 1.4;
+  line-height: 1.5;
   transition: color 0.15s;
 }
 
 .toc-link:hover {
-  color: #111827;
+  color: #121212;
 }
 
 .toc-link--h1 {
   font-weight: 600;
+  color: #121212;
 }
 
 .toc-link--h2 {
-  font-size: 0.8rem;
-  color: #6b7280;
-  font-weight: 500;
+  font-size: 12px;
+  color: #8590a6;
+  font-weight: 400;
 }
 
 .toc-link--h2:hover {
-  color: #374151;
+  color: #646464;
 }
 
 .toc-link--active {
-  color: #000;
+  color: #175199;
+  font-weight: 600;
+}
+
+.toc-link--active.toc-link--h2 {
   font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .markdown-body {
   background-color: #ffffff;
-  padding: 2rem 2.25rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
-  color: #24292e;
+  padding: 16px 28px 40px;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  color: #24292e;
+/* 参考知乎正文：15px、行高约 1.67、字色 #121212 */
+.zhihu-article {
+  font-size: 15px;
+  line-height: 1.67;
+  color: #121212;
+  letter-spacing: 0.02em;
+}
+
+.zhihu-article :deep(p) {
+  margin: 1em 0;
+  font-size: 15px;
+  line-height: 1.67;
+}
+
+.zhihu-article :deep(h1) {
+  font-size: 22px;
+  line-height: 1.4;
   font-weight: 600;
+  color: #121212;
+  margin: 0 0 16px;
+  padding: 0;
+  border-bottom: none;
+}
+
+.zhihu-article :deep(h2) {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #121212;
+  margin: 28px 0 12px;
+  border-bottom: none;
+}
+
+.zhihu-article :deep(h3) {
+  font-size: 16px;
+  font-weight: 600;
+  color: #121212;
+  margin: 22px 0 10px;
+}
+
+.zhihu-article :deep(h4),
+.zhihu-article :deep(h5),
+.zhihu-article :deep(h6) {
+  font-size: 15px;
+  font-weight: 600;
+  color: #121212;
+  margin: 18px 0 8px;
+}
+
+.zhihu-article :deep(strong) {
+  font-weight: 600;
+  color: #121212;
+}
+
+.zhihu-article :deep(a) {
+  color: #175199;
+  text-decoration: none;
+}
+
+.zhihu-article :deep(a:hover) {
+  border-bottom: 1px solid #175199;
+}
+
+.zhihu-article :deep(blockquote) {
+  margin: 1em 0;
+  padding: 0 0 0 12px;
+  border-left: 4px solid #ebebeb;
+  color: #646464;
+}
+
+.zhihu-article :deep(ul),
+.zhihu-article :deep(ol) {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+.zhihu-article :deep(li) {
+  margin: 0.35em 0;
+}
+
+.zhihu-article :deep(hr) {
+  border: none;
+  border-top: 1px solid #ebebeb;
+  margin: 1.5em 0;
+}
+
+.zhihu-article :deep(pre) {
+  margin: 1em 0;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.zhihu-article :deep(:not(pre) > code) {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  background: #f6f6f6;
+  border-radius: 3px;
+  color: #1a1a1a;
+}
+
+.zhihu-article :deep(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
 .back-link {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: #4b5563;
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  padding: 0 2px;
+  color: #8590a6;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 14px;
+  line-height: 1.4;
+  flex-shrink: 0;
 }
 
 .back-link:hover {
-  color: #111827;
+  color: #175199;
+}
+
+.back-link--solo {
+  margin-bottom: 12px;
+  width: auto;
+}
+
+@media (max-width: 900px) {
+  .article-layout--with-toc {
+    transform: none;
+  }
+
+  .article-layout {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .article-column {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .toc-column {
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+    position: relative;
+    top: auto;
+    max-height: none;
+  }
+
+  .toc-sidebar {
+    max-height: none;
+  }
 }
 </style>

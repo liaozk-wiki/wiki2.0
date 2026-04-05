@@ -76,6 +76,14 @@ body,
   max-width: none;
 }
 
+/* 文章详情：放宽 main 子元素上限，正文区固定知乎式宽度在 DetailView 内控制 */
+.app-container:not(.is-home) > main > .article-page {
+  max-width: min(1060px, 100%);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* 页脚 */
 
 .app-container > footer {

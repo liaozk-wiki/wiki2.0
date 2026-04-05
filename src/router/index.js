@@ -19,10 +19,15 @@ const routes = [
   { path: '/writing', component: WritingListView },
   { path: '/home', component: HomeView },
   { path: '/reading', component: ReadingListView },
-  { path: '/learning/:topic/:articleId', name: 'LearningArticle', component: DetailView },
+  {
+    path: '/learning/:topic/:articleId',
+    name: 'LearningArticle',
+    component: DetailView,
+    meta: { detailArticle: true },
+  },
   { path: '/learning/:topic', component: LearningListView },
   { path: '/learning', component: LearningListView },
-  { path: '/:category/:id', component: DetailView },
+  { path: '/:category/:id', component: DetailView, meta: { detailArticle: true } },
 ]
 
 const base = '/'

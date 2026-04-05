@@ -79,20 +79,23 @@ watch(
           {{ t.title }}
         </router-link>
       </nav>
+      <!-- 与 computer 页相同：720px 列落在 1fr | auto | 1fr 中间，整页水平居中 -->
       <section class="article-panel" aria-label="当前主题文章">
-        <h2 v-if="currentTopic" class="panel-heading">{{ currentTopic.title }}</h2>
-        <ul v-if="articles.length" class="list">
-          <li v-for="item in articles" :key="item.id" class="list-item">
-            <router-link
-              :to="`/learning/${currentTopicSlug}/${item.id}`"
-              class="list-link"
-            >
-              <span class="list-title">{{ item.title }}</span>
-              <span v-if="item.date" class="list-date">{{ item.date }}</span>
-            </router-link>
-          </li>
-        </ul>
-        <p v-else class="list-empty">该主题下暂无文章</p>
+        <div class="reading-list">
+          <h2 v-if="currentTopic" class="topic-list-title">{{ currentTopic.title }}</h2>
+          <ul v-if="articles.length" class="list">
+            <li v-for="item in articles" :key="item.id" class="list-item">
+              <router-link
+                :to="`/learning/${currentTopicSlug}/${item.id}`"
+                class="list-link"
+              >
+                <span class="list-title">{{ item.title }}</span>
+                <span v-if="item.date" class="list-date">{{ item.date }}</span>
+              </router-link>
+            </li>
+          </ul>
+          <p v-else class="list-empty">该主题下暂无文章</p>
+        </div>
       </section>
     </div>
   </div>
@@ -117,20 +120,26 @@ watch(
 }
 
 .learning-layout {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
+  position: relative;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 720px) 1fr;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .topic-nav {
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
   width: 200px;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   padding: 0.75rem 0;
   border-right: 1px solid #e5e7eb;
+  background: #f9fafb;
 }
 
 .topic-link {
@@ -154,15 +163,24 @@ watch(
 }
 
 .article-panel {
-  flex: 1;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
   min-width: 0;
 }
 
-.panel-heading {
-  font-size: 1.1rem;
+/* 与 ComputerListview .reading-list 一致 */
+.reading-list {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.topic-list-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
   font-weight: 600;
-  margin: 0 0 0.75rem;
-  color: #374151;
+  color: #111827;
 }
 
 .list {
@@ -205,19 +223,28 @@ watch(
   flex-shrink: 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .learning-layout {
+    display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
   .topic-nav {
+    position: relative;
+    left: auto;
+    top: auto;
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
     padding-bottom: 0.75rem;
+  }
+
+  .article-panel {
+    grid-column: auto;
+    width: 100%;
   }
 }
 </style>
