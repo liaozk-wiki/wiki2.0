@@ -1,5 +1,5 @@
 # 推送到 main 时：生成 content index → 构建 Vite → 部署到 GitHub Pages
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages 
 
 on:
   push:
@@ -18,11 +18,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # v6+ 与 GitHub 在 runner 上弃用 Node 20、默认 Node 24 的路线一致
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '24'
           cache: npm
 
       # 用户站点（仓库名 = owner.github.io）→ base 为 /；否则为项目站点 /仓库名/
@@ -40,7 +41,7 @@ jobs:
       - run: npm run content:index
       - run: npm run build
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
@@ -52,4 +53,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
