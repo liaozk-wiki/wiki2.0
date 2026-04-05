@@ -26,21 +26,41 @@ jobs:
           node-version: '24'
           cache: npm
 
-      # 默认：用户站 /；项目站 /仓库名/。若绑定自定义域名且站点在域名根，可在仓库 Settings → Variables 设 VITE_BASE=/
+      # 自定义域名（如 liaozk.wiki）下内容在域名根，资源应为 /assets/...，不能再用 /仓库名/assets/...
+      # 优先读仓库 Variables 的 VITE_BASE；否则若 Pages API 有 cname 则用 /；否则按 github.io/仓库名 用 /仓库名/
       - name: Set VITE_BASE for GitHub Pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -n "${{ vars.VITE_BASE }}" ]; then
-            echo "VITE_BASE from repository variable"
+            echo "VITE_BASE from repository variable: ${{ vars.VITE_BASE }}"
             echo "VITE_BASE=${{ vars.VITE_BASE }}" >> "$GITHUB_ENV"
             exit 0
           fi
           OWNER="${{ github.repository_owner }}"
           REPO="${{ github.event.repository.name }}"
           if [ "$REPO" = "${OWNER}.github.io" ]; then
+            echo "User Pages repo → VITE_BASE=/"
             echo "VITE_BASE=/" >> "$GITHUB_ENV"
-          else
-            echo "VITE_BASE=/$REPO/" >> "$GITHUB_ENV"
+            exit 0
           fi
+          CODE=$(curl -sS -o /tmp/gh_pages.json -w "%{http_code}" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${OWNER}/${REPO}/pages")
+          if [ "$CODE" = "200" ]; then
+            CNAME=$(jq -r '.cname // empty' /tmp/gh_pages.json)
+            if [ -n "$CNAME" ]; then
+              echo "Pages custom domain ($CNAME) → VITE_BASE=/"
+              echo "VITE_BASE=/" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          else
+            echo "GET /pages returned HTTP $CODE (using default subpath if applicable)"
+          fi
+          echo "Project default github.io/$REPO → VITE_BASE=/$REPO/"
+          echo "VITE_BASE=/$REPO/" >> "$GITHUB_ENV"
 
       - run: npm ci
       - run: npm run content:index
