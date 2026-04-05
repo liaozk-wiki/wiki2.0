@@ -70,14 +70,15 @@ const staticBgUrl = '/bgimg/9B95F230-D7F7-446E-ACB2-82B8D347A5FA_1_105_c.jpeg'
     <header>
       <div class="nav-group nav-group-left">
         <router-link to="/">Home</router-link>
+        <router-link to="/reading">Reading</router-link>
+        <router-link to="/living">Living</router-link>
+        
+      </div>
+      <div class="nav-group nav-group-right">
+        <router-link to="/graph">Graph</router-link>
         <router-link to="/learning">Learning</router-link>
         <router-link to="/computer">Computer</router-link>
         <router-link to="/bug">Bug</router-link>
-      </div>
-      <div class="nav-group nav-group-right">
-        <router-link to="/reading">Reading</router-link>
-        <router-link to="/writing">Writing</router-link>
-        <router-link to="/living">Living</router-link>
       </div>
     </header>
     <main>

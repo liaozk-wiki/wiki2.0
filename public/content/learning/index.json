@@ -1,53 +1,33 @@
 [
   {
-    "slug": "algorithms4th",
-    "title": "算法（第 4 版）",
+    "slug": "1.database",
+    "title": "数据库",
     "articles": [
       {
-        "id": "a.前言",
-        "title": "前言",
-        "date": "2000-01-01"
-      },
-      {
-        "id": "b.排序",
-        "title": "排序",
-        "date": "2000-01-01"
-      },
-      {
-        "id": "c.查找",
-        "title": "查找",
-        "date": "2000-01-01"
-      },
-      {
-        "id": "d.图",
-        "title": "图",
-        "date": "2000-01-01"
-      },
-      {
-        "id": "e.字符串",
-        "title": "字符串",
+        "id": "database",
+        "title": "数据库的整体概览",
         "date": "2000-01-01"
       }
     ]
   },
   {
-    "slug": "computernet",
+    "slug": "2.computernet",
     "title": "计算机网络",
     "articles": [
       {
         "id": "computer_network",
-        "title": "computer network",
+        "title": "Overview",
         "date": "2000-01-01"
       }
     ]
   },
   {
-    "slug": "cs61a",
+    "slug": "3.cs61a",
     "title": "CS61A",
     "articles": [
       {
         "id": "cs61a",
-        "title": "cs61a",
+        "title": "other",
         "date": "2000-01-01"
       },
       {
@@ -58,70 +38,90 @@
     ]
   },
   {
-    "slug": "cs61b",
+    "slug": "4.cs61b",
     "title": "CS61B",
     "articles": [
       {
         "id": "cs61b",
-        "title": "cs61b",
+        "title": "CS61b",
         "date": "2000-01-01"
       }
     ]
   },
   {
-    "slug": "csapp",
+    "slug": "5.algorithms4th",
+    "title": "算法（第 4 版）",
+    "articles": [
+      {
+        "id": "a.前言",
+        "title": "写在前面",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "b.排序",
+        "title": "高效乘积",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "c.查找",
+        "title": "1.符号表",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "d.图",
+        "title": "图论",
+        "date": "2000-01-01"
+      },
+      {
+        "id": "e.字符串",
+        "title": "字符串排序(radix sort)",
+        "date": "2000-01-01"
+      }
+    ]
+  },
+  {
+    "slug": "6.csapp",
     "title": "CSAPP",
     "articles": [
       {
         "id": "a.实验记录",
-        "title": "实验记录",
+        "title": "You can modify this portion",
         "date": "2000-01-01"
       },
       {
         "id": "b.程序结构和执行",
-        "title": "程序结构和执行",
+        "title": "Hello.c 的一生",
         "date": "2000-01-01"
       },
       {
         "id": "c.操作系统上的程序",
-        "title": "操作系统上的程序",
+        "title": "链接",
         "date": "2000-01-01"
       }
     ]
   },
   {
-    "slug": "database",
-    "title": "数据库",
-    "articles": [
-      {
-        "id": "database",
-        "title": "数据库相关知识",
-        "date": "2000-01-01"
-      }
-    ]
-  },
-  {
-    "slug": "os",
+    "slug": "7.os",
     "title": "操作系统",
     "articles": [
       {
         "id": "操作系统_并发",
-        "title": "操作系统_并发",
+        "title": "start",
         "date": "2000-01-01"
       },
       {
         "id": "操作系统_持久化",
-        "title": "操作系统_持久化",
+        "title": "0x16速通",
         "date": "2000-01-01"
       },
       {
         "id": "操作系统_实验记录",
-        "title": "操作系统_实验记录",
+        "title": "一些构想",
         "date": "2000-01-01"
       },
       {
         "id": "操作系统_虚拟化",
-        "title": "操作系统_虚拟化",
+        "title": "第六周阅读材料",
         "date": "2000-01-01"
       }
     ]

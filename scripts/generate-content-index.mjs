@@ -1,6 +1,9 @@
 /**
  * 根据 public/content 下各目录的 .md 文件生成 index.json
  * 用法：node scripts/generate-content-index.mjs
+ *
+ * Learning 主题目录约定：public/content/learning/<序号>.<短名>/
+ * 例如 1.database、5.algorithms4th；index.json 中 slug 与文件夹名一致，供路由 /learning/:topic
  */
 import fs from 'fs'
 import path from 'path'
@@ -66,14 +69,25 @@ function buildFlatContent(subdir, tag) {
   return items
 }
 
+/** 与 learning 子目录「去掉序号前缀」后的短名对应，用于展示标题 */
 const topicTitles = {
-  algorithms4th: '算法（第 4 版）',
+  database: '数据库',
   computernet: '计算机网络',
-  csapp: 'CSAPP',
   cs61a: 'CS61A',
   cs61b: 'CS61B',
-  database: '数据库',
+  algorithms4th: '算法（第 4 版）',
+  csapp: 'CSAPP',
   os: '操作系统',
+}
+
+function learningShortName(dirName) {
+  return dirName.replace(/^\d+\./, '') || dirName
+}
+
+function learningDirSortKey(dirName) {
+  const m = dirName.match(/^(\d+)\./)
+  const n = m ? parseInt(m[1], 10) : Number.POSITIVE_INFINITY
+  return [n, dirName]
 }
 
 function titleForLearningFile(text, filename) {
@@ -86,11 +100,23 @@ function titleForLearningFile(text, filename) {
 
 function buildLearning() {
   const base = path.join(contentRoot, 'learning')
+  if (!fs.existsSync(base)) return []
+
   const dirs = fs
     .readdirSync(base)
-    .filter((d) => fs.statSync(path.join(base, d)).isDirectory())
+    .filter((d) => {
+      const p = path.join(base, d)
+      return fs.statSync(p).isDirectory()
+    })
+    .sort((a, b) => {
+      const [na, sa] = learningDirSortKey(a)
+      const [nb, sb] = learningDirSortKey(b)
+      if (na !== nb) return na - nb
+      return sa.localeCompare(sb, 'zh-CN')
+    })
+
   const topics = []
-  for (const slug of dirs.sort()) {
+  for (const slug of dirs) {
     const dir = path.join(base, slug)
     const files = fs.readdirSync(dir).filter((f) => f.endsWith('.md'))
     const articles = files.map((f) => {
@@ -102,9 +128,13 @@ function buildLearning() {
       return { id, title, date }
     })
     articles.sort((a, b) => a.id.localeCompare(b.id, 'zh-CN'))
+
+    const short = learningShortName(slug)
+    const title = topicTitles[short] || short
+
     topics.push({
       slug,
-      title: topicTitles[slug] || slug,
+      title,
       articles,
     })
   }
@@ -136,9 +166,10 @@ for (const [subdir, tag] of flatDirs) {
   fs.writeFileSync(path.join(full, 'index.json'), json)
 }
 
+ensureDir(path.join(contentRoot, 'learning'))
 fs.writeFileSync(
   path.join(contentRoot, 'learning', 'index.json'),
   JSON.stringify(buildLearning(), null, 2) + '\n'
 )
 
-console.log('已生成各目录 index.json（含 learning 主题结构）')
+console.log('已生成各目录 index.json（learning 按 序号.短名 子目录）')

@@ -1,7 +1,7 @@
 [
   {
     "id": "2025-12-20-AxonFramework",
-    "title": "Axon Framework",
+    "title": "Axon",
     "date": "2025-12-20",
     "tags": [
       "computer"
@@ -9,7 +9,7 @@
   },
   {
     "id": "2025-08-17-程序如何之为可能",
-    "title": "程序如何之为可能(todo)",
+    "title": "程序如何之为可能",
     "date": "2025-08-17",
     "tags": [
       "computer"
@@ -17,7 +17,7 @@
   },
   {
     "id": "2025-08-04-kubernetes",
-    "title": "Kubernetes Overview",
+    "title": "MiniKube",
     "date": "2025-08-04",
     "tags": [
       "computer"
@@ -25,7 +25,7 @@
   },
   {
     "id": "2025-07-24-javaConcurrencyTutorials",
-    "title": "Java Concurrency",
+    "title": "Processes and Threads",
     "date": "2025-07-24",
     "tags": [
       "computer"
@@ -33,7 +33,7 @@
   },
   {
     "id": "2025-07-10-RAGDemo",
-    "title": "大模型 RAG Demo",
+    "title": "openai.api_key  = os.environ['OPENAI_API_KEY']",
     "date": "2025-07-10",
     "tags": [
       "computer"
@@ -41,7 +41,7 @@
   },
   {
     "id": "2025-07-05-吴恩达简介AI",
-    "title": "吴恩达简介AI",
+    "title": "Overview",
     "date": "2025-07-05",
     "tags": [
       "computer"
@@ -49,7 +49,7 @@
   },
   {
     "id": "2025-07-04-并发",
-    "title": "并发基础思想",
+    "title": "BUG的根源",
     "date": "2025-07-04",
     "tags": [
       "computer"
@@ -57,7 +57,7 @@
   },
   {
     "id": "2025-06-29-容器与虚拟化",
-    "title": "容器与虚拟化",
+    "title": "docker",
     "date": "2025-06-29",
     "tags": [
       "computer"
@@ -65,7 +65,7 @@
   },
   {
     "id": "2025-05-08-JVM属于java的状态机",
-    "title": "JVM",
+    "title": "JVM总览",
     "date": "2025-05-08",
     "tags": [
       "computer"
@@ -73,7 +73,7 @@
   },
   {
     "id": "2024-12-15-理解abstruct machine",
-    "title": "理解jyy-os课程的abstruct machine",
+    "title": "Building",
     "date": "2024-12-15",
     "tags": [
       "computer"

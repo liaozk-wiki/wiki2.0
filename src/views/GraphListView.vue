@@ -5,7 +5,7 @@ const list = ref([])
 
 onMounted(
     async () => {
-        const res = await fetch('/content/writing/index.json')
+        const res = await fetch('/content/graph/index.json')
         list.value = await res.json()
     }
 )
@@ -14,10 +14,10 @@ onMounted(
 
 <template>
 <div class="main-list">
-    <h1>书写</h1>
+    <h1>知识图谱</h1>
     <ul class="list">
       <li v-for="item in list" :key="item.id" class="list-item">
-        <router-link :to="`/writing/${item.id}`" class="list-link">
+        <router-link :to="`/graph/${item.id}`" class="list-link">
           <span class="list-title">{{ item.title }}</span>
           <span class="list-date">{{ item.date }}</span>
         </router-link>
