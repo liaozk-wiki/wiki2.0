@@ -25,3 +25,6 @@ dist-ssr
 
 # 若本机全局 ~/.gitignore 含 *.yml，仍会忽略 Actions；此处显式纳入
 !.github/workflows/*.yml
+
+# 若全局含 *.html，Vite 入口 index.html 仍需纳入版本库
+!/index.html
