@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 若本机全局 ~/.gitignore 含 *.yml，仍会忽略 Actions；此处显式纳入
+!.github/workflows/*.yml
