@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../components/HelloWorld.vue'
 import AboutView from '../views/AboutView.vue'
 import BugListView from '../views/BugListView.vue'
-import ComputerListview from '../views/ComputerListview.vue'
+import ComputerListView from '../views/ComputerListView.vue'
 import LivingListView from '../views/LivingListView.vue'
 import GraphListView from '../views/GraphListView.vue'
 import HomeView from '../views/HomeView.vue'
@@ -20,7 +20,7 @@ const routes = [
   { path: '/', component: HomeView },
   { path: '/about', component: AboutView },
   { path: '/bug', component: BugListView },
-  { path: '/computer', component: ComputerListview },
+  { path: '/computer', component: ComputerListView },
   { path: '/living', component: LivingListView },
   { path: '/graph', component: GraphListView },
   { path: '/home', component: HomeView },
