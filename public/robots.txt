@@ -1,0 +1,5 @@
+# 部署后把下面的域名换成你的站点根 URL（与 index.html 中 og:url 一致）
+User-agent: *
+Allow: /
+
+Sitemap: https://liaozk.wiki/sitemap.xml
