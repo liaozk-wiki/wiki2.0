@@ -1,4 +1,4 @@
-
+# 理解 abstruct machine
 
 这个其实应该属于jyy-os课程的内容，不太方便将其归纳到os模块，故单独放置于此。
 理解abstruct machine：
@@ -21,12 +21,9 @@ https://jyywiki.cn/OS/AbstractMachine/AM_Programs.html
 
 makefile 工具
 
-
 ```shell
 make -nB | grep -v '^mkdir' | vim -
 ```
-
-
 
 ```vim
 :%s/^/\r
@@ -35,10 +32,6 @@ make -nB | grep -v '^mkdir' | vim -
 :w newfile.txt
 :set nu
 ```
-
-
-
-
 
 ```text
 

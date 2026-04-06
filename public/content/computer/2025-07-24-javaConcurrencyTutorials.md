@@ -1,6 +1,4 @@
-
-
-java concurrency
+# java concurrency
 
 大部分内容均整理自 [The Java™ Tutorials](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html)
 
