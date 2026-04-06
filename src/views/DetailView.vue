@@ -71,18 +71,28 @@ function preserveMultipleNewlines(text) {
   return text.replace(/(\n\n)(\n+)/g, (_, pair, rest) => pair + '<br>\n'.repeat(rest.length))
 }
 
+/**
+ * 多空行后若紧跟 ATX 标题（# …），先压成仅一个段落空行。
+ * 否则插入的 <br> 会让 markdown-it 把后面的 # 当成 HTML 块后的纯文本，标题无法解析。
+ */
+ function collapseNewlinesBeforeHeadings(text) {
+  return text.replace(/(\n\n)(\n+)(?=\s{0,3}#{1,6}\s)/gm, '$1')
+}
+
 /** 仅对代码块之外的正文做多换行保留，代码块内部不替换 */
 function preserveMultipleNewlinesOutsideCodeBlocks(text) {
   const codeBlockRe = /^```[\w]*\s*\n[\s\S]*?^```\s*\n?/gm
   const parts = []
   let lastEnd = 0
   let match
+  const transform = (chunk) =>
+    preserveMultipleNewlines(collapseNewlinesBeforeHeadings(chunk))
   while ((match = codeBlockRe.exec(text)) !== null) {
-    parts.push(preserveMultipleNewlines(text.slice(lastEnd, match.index)))
+    parts.push(transform(text.slice(lastEnd, match.index)))
     parts.push(match[0])
     lastEnd = match.index + match[0].length
   }
-  parts.push(preserveMultipleNewlines(text.slice(lastEnd)))
+  parts.push(transform(text.slice(lastEnd)))
   return parts.join('')
 }
 
