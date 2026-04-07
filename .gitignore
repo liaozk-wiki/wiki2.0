@@ -28,3 +28,4 @@ dist-ssr
 
 # 若全局含 *.html，Vite 入口 index.html 仍需纳入版本库
 !/index.html
+!/404.html
