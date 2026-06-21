@@ -194,6 +194,17 @@ function toggleH1(slug) {
   expandedH1Slugs.value = next
 }
 
+/** 点击 TOC 链接时手动滚动到对应标题，避免 hash 变化触发意外的状态重置 */
+function scrollToHeading(slug) {
+  const el = document.getElementById(slug)
+  if (!el) return
+  const url = new URL(window.location)
+  url.hash = slug
+  window.history.replaceState(null, '', url)
+  activeTocSlug.value = slug
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
 /** Markdown 渲染后对文章内所有 <pre><code> 做 highlight.js 高亮 */
 function highlightCodeBlocks() {
   const container = articleBodyRef.value
@@ -241,6 +252,7 @@ watch(
                 <a
                   :href="`#${section.slug}`"
                   :class="['toc-link', 'toc-link--h1', { 'toc-link--active': activeTocSlug === section.slug }]"
+                  @click.prevent="scrollToHeading(section.slug)"
                 >
                   {{ section.text }}
                 </a>
@@ -261,6 +273,7 @@ watch(
                   :key="child.slug"
                   :href="`#${child.slug}`"
                   :class="['toc-link', 'toc-link--h2', { 'toc-link--active': activeTocSlug === child.slug }]"
+                  @click.prevent="scrollToHeading(child.slug)"
                 >
                   {{ child.text }}
                 </a>
@@ -355,7 +368,7 @@ watch(
 .toc-title {
   font-size: 13px;
   font-weight: 600;
-  color: #8590a6;
+  color: #64748b;
   margin-bottom: 10px;
   padding-bottom: 8px;
   border-bottom: 1px solid #f0f0f0;
@@ -392,7 +405,7 @@ watch(
   border: none;
   background: none;
   font-size: 10px;
-  color: #8590a6;
+  color: #64748b;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -434,7 +447,7 @@ watch(
 
 .toc-link--h2 {
   font-size: 12px;
-  color: #8590a6;
+  color: #64748b;
   font-weight: 400;
 }
 
@@ -459,22 +472,22 @@ watch(
   border: none;
 }
 
-/* 参考知乎正文：15px、行高约 1.67、字色 #121212 */
+/* 参考知乎正文：16px、行高约 1.67、字色 #121212 */
 .zhihu-article {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.67;
   color: #121212;
   letter-spacing: 0.02em;
 }
 
 .zhihu-article :deep(p) {
-  margin: 1em 0;
-  font-size: 15px;
+  margin: 1.25em 0;
+  font-size: 16px;
   line-height: 1.67;
 }
 
 .zhihu-article :deep(h1) {
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.4;
   font-weight: 600;
   color: #121212;
@@ -484,7 +497,7 @@ watch(
 }
 
 .zhihu-article :deep(h2) {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.4;
   font-weight: 600;
   color: #121212;
@@ -493,7 +506,7 @@ watch(
 }
 
 .zhihu-article :deep(h3) {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: #121212;
   margin: 22px 0 10px;
@@ -502,7 +515,7 @@ watch(
 .zhihu-article :deep(h4),
 .zhihu-article :deep(h5),
 .zhihu-article :deep(h6) {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: #121212;
   margin: 18px 0 8px;
@@ -536,7 +549,7 @@ watch(
 }
 
 .zhihu-article :deep(li) {
-  margin: 0.35em 0;
+  margin: 0.45em 0;
 }
 
 .zhihu-article :deep(hr) {

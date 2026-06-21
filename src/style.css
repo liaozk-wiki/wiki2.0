@@ -1,6 +1,6 @@
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Noto Sans SC", "Microsoft YaHei", "SF Pro Text", "Segoe UI", sans-serif;
   line-height: 1.6;
   font-weight: 400;
   color: #111827;
@@ -21,7 +21,6 @@ body,
 
 .app-container {
   min-height: 100vh;
-  max-width: 960px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
@@ -197,4 +196,34 @@ body,
 .article-body th {
   background: #f9fafb;
   font-weight: 500;
+}
+
+/* ===== 键盘焦点样式 ===== */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ===== 打印样式 ===== */
+
+@media print {
+  header,
+  footer,
+  .toc-column,
+  .back-link {
+    display: none !important;
+  }
+
+  .app-container {
+    padding: 0;
+  }
+
+  .article-body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+  }
 }
