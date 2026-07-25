@@ -86,7 +86,11 @@ twitter的例子：
 
 总之一个系统，必须完成预期的多种需求：功能需求、非功能性的（可靠、拓展、运维等等）
 
+
+
 ![三个要点](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/20260524162558242.png)
+
+
 
 
 
