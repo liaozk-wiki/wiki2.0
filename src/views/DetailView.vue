@@ -686,6 +686,12 @@ watch(
     max-width: 100%;
   }
 
+  /* 正文向左撑宽 main 的 padding，让内容更饱满 */
+  .article-page {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+  }
+
   /* 移动端目录折叠栏 */
   .mobile-toc-bar {
     display: flex;
