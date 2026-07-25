@@ -13,6 +13,7 @@ const articleBodyRef = ref(null)
 const toc = ref([])
 const activeTocSlug = ref('')
 const expandedH1Slugs = ref(new Set())
+const showMobileToc = ref(false)
 let observer = null
 
 /** 将扁平 toc 转为树形：一级下挂二级，一级默认展开，二级默认关闭 */
@@ -231,6 +232,7 @@ watch(
   () => {
     expandedH1Slugs.value = new Set()
     activeTocSlug.value = ''
+    showMobileToc.value = false
     loadArticle()
   }
 )
@@ -238,6 +240,59 @@ watch(
 
 <template>
   <div class="article-page">
+    <!-- 移动端：目录折叠按钮 + 可展开目录 -->
+    <div v-if="tocTree.length" class="mobile-toc-bar">
+      <router-link :to="backPath" class="back-link back-link--inline">← 返回列表</router-link>
+      <button
+        type="button"
+        class="mobile-toc-toggle"
+        :aria-expanded="showMobileToc"
+        @click="showMobileToc = !showMobileToc"
+      >
+        目录
+        <span class="mobile-toc-arrow" :class="{ 'mobile-toc-arrow--open': showMobileToc }">▾</span>
+      </button>
+    </div>
+    <div v-if="tocTree.length && showMobileToc" class="mobile-toc-panel">
+      <aside class="toc-sidebar">
+        <nav class="toc-nav">
+          <div v-for="section in tocTree" :key="section.slug" class="toc-section">
+            <div class="toc-h1-row">
+              <a
+                :href="`#${section.slug}`"
+                :class="['toc-link', 'toc-link--h1', { 'toc-link--active': activeTocSlug === section.slug }]"
+                @click.prevent="scrollToHeading(section.slug)"
+              >
+                {{ section.text }}
+              </a>
+              <button
+                v-if="section.children.length"
+                type="button"
+                class="toc-h1-arrow"
+                :class="{ 'toc-h1-arrow--open': expandedH1Slugs.has(section.slug) }"
+                :aria-expanded="expandedH1Slugs.has(section.slug)"
+                @click.stop="toggleH1(section.slug)"
+              >
+                ▼
+              </button>
+            </div>
+            <div v-show="expandedH1Slugs.has(section.slug)" class="toc-children">
+              <a
+                v-for="child in section.children"
+                :key="child.slug"
+                :href="`#${child.slug}`"
+                :class="['toc-link', 'toc-link--h2', { 'toc-link--active': activeTocSlug === child.slug }]"
+                @click.prevent="scrollToHeading(child.slug)"
+              >
+                {{ child.text }}
+              </a>
+            </div>
+          </div>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- PC 端：目录 + 正文双列布局；移动端仅正文 -->
     <div
       class="article-layout"
       :class="{ 'article-layout--with-toc': tocTree.length > 0 }"
@@ -601,14 +656,28 @@ watch(
   width: auto;
 }
 
+/* ---- 移动端目录栏 ---- */
+.mobile-toc-bar {
+  display: none;
+}
+
+.mobile-toc-panel {
+  display: none;
+}
+
 @media (max-width: 900px) {
+  /* 隐藏 PC 目录区域 */
   .article-layout--with-toc {
     transform: none;
   }
 
   .article-layout {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: stretch;
+  }
+
+  .toc-column {
+    display: none;
   }
 
   .article-column {
@@ -617,17 +686,63 @@ watch(
     max-width: 100%;
   }
 
-  .toc-column {
-    width: 100%;
-    max-width: 100%;
-    flex: 1 1 auto;
-    position: relative;
-    top: auto;
-    max-height: none;
+  /* 移动端目录折叠栏 */
+  .mobile-toc-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
   }
 
-  .toc-sidebar {
+  .back-link--inline {
+    flex-shrink: 0;
+  }
+
+  .mobile-toc-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #fff;
+    color: #374151;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+
+  .mobile-toc-arrow {
+    font-size: 10px;
+    transition: transform 0.2s;
+  }
+
+  .mobile-toc-arrow--open {
+    transform: rotate(-180deg);
+  }
+
+  .mobile-toc-panel {
+    display: block;
+    margin-bottom: 1rem;
+    padding: 10px 14px;
+    background: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #ebebeb;
+  }
+
+  .mobile-toc-panel .toc-sidebar {
     max-height: none;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+  }
+
+  /* 移动端正文左右对称 */
+  .markdown-body {
+    padding: 0 0 40px;
   }
 }
 </style>
