@@ -285,9 +285,9 @@ quorum法定人数缺陷：
 
 
 
+总结：
+
 ![image-20260712201702358](https://markdownupload.oss-cn-chengdu.aliyuncs.com/md/20260712201702407.png)
-
-
 
 
 
