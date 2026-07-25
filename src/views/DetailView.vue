@@ -740,9 +740,9 @@ watch(
     border-radius: 0;
   }
 
-  /* 移动端正文左右对称 */
+  /* 移动端正文保留适度内边距，两侧更紧凑 */
   .markdown-body {
-    padding: 0 0 40px;
+    padding: 16px 12px 40px;
   }
 }
 </style>
